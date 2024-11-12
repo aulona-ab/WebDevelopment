@@ -136,14 +136,49 @@ button, register-button{
 
 }
 
-.register-button{
-    margin-top: 15px;
-}
+
 
 button:hover{
     background-color: #d4a555;
     color: rgb(85, 72, 2);
 }
+
+.form-check {
+    display:flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.form-check-input {
+    max-width: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #e5a329; 
+}
+.form-check-label {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+.valid-feedback {
+    display: none; 
+    font-size: 14px;
+    color: green;
+}
+
+input:valid ~ .valid-feedback {
+    display: block;
+}
+
+input:checked ~ .form-check-label {
+    color: #4CAF50;
+}
+
+.form-check-label:hover {
+    color: #e5a329;
+}
+
 
 
 .social-icons{
