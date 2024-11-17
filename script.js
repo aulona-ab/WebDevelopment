@@ -33,4 +33,28 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
       button.classList.toggle('favorited');
     });
   });
+
+  const carousel = document.querySelector('.carousel');
+const slides = document.querySelectorAll('.slide');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+
+let currentIndex = 0;
+
+function updateCarousel() {
+  const slideWidth = slides[0].clientWidth; 
+  const offset = -currentIndex * slideWidth; 
+  carousel.style.transform = `translateX(${offset}px)`; 
+}
+
+nextButton.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length; 
+  updateCarousel();
+});
+
+prevButton.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length; 
+  updateCarousel();
+});
+
   

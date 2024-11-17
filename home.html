@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beta Home Version</title>
     <link rel="stylesheet" href="page.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
 </head>
@@ -21,11 +20,9 @@
         <ul>
             <li><a href="./home.html">Home</a></li>
             <li><a href="./home.html">About Us</a></li>
-            <li><i class="fas fa-shopping-cart"></i>
-                <a href="./home.html">Shopping Cart</a></li>
-            <li><a href="./home.html">Contact Us</a></li>
-            <li><i class="fas fa-user"></i>
-                <a href="./home.html">Profile</a></li>
+            <li><a href="./home.html">Contact</a></li>
+            <li><a href="./home.html"><i class="fas fa-shopping-cart"></i></a></li>
+            <li><a href="./home.html"><i class="fas fa-user"></i></a></li>
         </ul>
     </header>
 
@@ -46,23 +43,25 @@
           <li><a href="#non-fiction">Adventure</a></li>
         </ul>
       </nav>
-      <a href="#non-fiction"><div class="offer-banner">50% Off on All New Series – Grab Your Favorites!</div></a>
     </div>
     
-
-    <section class="row">
-        <div class="section-left">
-        <h1>Curated for those who live between the lines </h1>
-        <h3>Now Available Everywhere You Are!</h3>
-        <p>We’re thrilled to announce our bookstore is now available on your mobile device! From newly released titles to timeless classics, you can explore and shop on the go. Discover the latest genres and recommendations curated just for you—anytime, anywhere.</p>
-        <button> Read More!</button>
+    <div class="carousel-container">
+      <div class="carousel">
+        <div class="slide">
+          <a href="./home.html"><img src="./wallpaper/Browse, Buy & Binge-final-FINAL.png" alt="ADS"></a>
+          <div class="caption"><a href="./home.html">Download App!</a></div>
         </div>
-    <div class="section-right"></div>
-    </section>
-
-    <div class="shop-img-scroll-down">
-        <img src="./wallpaper/25-prep2.png" alt="">
-    </div>
+        <div class="slide">
+          <img src="./wallpaper/Untitled design.png" alt="">
+        </div>
+        <div class="slide">
+          <img src="./wallpaper/Untitled design.png" alt="">
+        </div>
+      </div>
+      <button class="prev">&lt;</button>
+      <button class="next">&gt;</button>
+    </div>  
+  
 
 
         <div class="news-section">
@@ -115,9 +114,10 @@
         </div>
     </div>
 
-        <div class="check-latest-products-shop">
-            <h2> Browse Our Products </h2>
-        </div>
+    <div class="fading-line"></div>
+    <div class="filter">
+      <button> Filter </button>
+    </div>
 
     <div class="product-container">
         <div class="product-card">
@@ -125,7 +125,6 @@
           <div class="product-discount">-50%</div>
           <img src="./books/book-cover (1).png" alt="Book Cover" class="product-image" />
           <h3 class="product-title">The Great Novel</h3>
-          <p class="product-author">by Jane Doe</p>
           <p class="product-genre">Genre: Fiction, Adventure</p> 
           <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
           <p class="vat">VAT included</p> 
@@ -137,7 +136,6 @@
             <div class="product-discount">-50%</div> 
             <img src="./books/Untitled design (1) (1) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -149,7 +147,6 @@
             <div class="product-discount">-50%</div> 
             <img src="./books/Untitled design (2) (1) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -161,7 +158,6 @@
             <div class="product-discount">-50%</div> 
             <img src="./books/Untitled design (11) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -173,7 +169,6 @@
             <div class="product-discount">-50%</div> 
             <img src="./books/Untitled design (7) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -185,7 +180,6 @@
             <div class="product-discount">-30%</div> 
             <img src="./books/Untitled design (9) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -196,7 +190,6 @@
             <div class="product-discount">SOLD OUT</div> 
             <img src="./books/Untitled design (6) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price"><span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -207,7 +200,6 @@
             <div class="product-discount">-50%</div> 
             <img src="./books/Untitled design (10).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -219,7 +211,6 @@
             <div class="product-discount">-15%</div> 
             <img src="./books/Untitled design (12) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -229,7 +220,6 @@
           <div class="product-card">
             <img src="./books/Untitled design (4) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € </p>
             <p class="vat">VAT included</p> 
@@ -239,7 +229,6 @@
           <div class="product-card">
             <img src="./books/Untitled design (3) (1).png" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € </p>
             <p class="vat">VAT included</p> 
@@ -250,7 +239,6 @@
             <div class="product-discount">1 in Stock</div> 
             <img src="./books/15.jpg" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € </p>
             <p class="vat">VAT included</p> 
@@ -262,7 +250,6 @@
             <div class="product-discount">-15%</div> 
             <img src="./books/16.jpg" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
             <p class="vat">VAT included</p> 
@@ -272,7 +259,6 @@
           <div class="product-card">
             <img src="./books/17.jpg" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 € </p>
             <p class="vat">VAT included</p> 
@@ -282,7 +268,6 @@
           <div class="product-card">
             <img src="./books/18.jpg" alt="Book Cover" class="product-image" />
             <h3 class="product-title">The Great Novel</h3>
-            <p class="product-author">by Jane Doe</p> 
             <p class="product-genre">Genre: Fiction, Adventure</p> 
             <p class="product-price">12.99 €</p>
             <p class="vat">VAT included</p> 

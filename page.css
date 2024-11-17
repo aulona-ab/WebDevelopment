@@ -6,6 +6,7 @@
 }
 
 body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding-top: 70px;
     width: 100%;
     height: 100vh;
@@ -68,6 +69,31 @@ header{
     }
 }
 
+.logo img{
+    margin-top: 10px;
+    height: 80px;
+    width: 230px;
+}
+
+header ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+header li a{
+    text-decoration: none;
+    color: rgba(24, 24, 23, 0.734);
+    font-weight: 600;
+    font-size: 17px;
+}
+header li a:hover {
+    color: #611915;
+    border-bottom:  0.1em solid #f9aa18;
+}
+
 .genre-container{
     position: relative;
 }
@@ -120,31 +146,69 @@ header{
     color: #fff713;
 }
 
-.logo img{
-    margin-top: 10px;
-    height: 80px;
-    width: 230px;
-}
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%; 
+    height: 350px; 
+    overflow: hidden; 
+    margin: auto;
+  }
 
-ul{
-    margin-right: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    list-style: none;
-}
+  .carousel {
+    display: flex; 
+    transition: transform 0.7s ease-in-out;
+    height: 100%; 
+  }
 
-li a{
-    text-decoration: none;
-    color: rgba(22, 19, 12, 0.826);
-    font-weight: 600;
+ 
+.slide {
+    flex: 0 0 100%; 
+    height: 100%;
+  }
+  
+  .slide img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+  }
+
+  button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  button.prev {
+    left: 10px;
+  }
+  
+  button.next {
+    right: 10px;
+  }
+  
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .caption a{
+    position: absolute;
+    bottom: 20px;
+    left: 400px;
+    color: white;
+    background: rgba(115, 44, 44, 0.6);
+    padding: 5px 10px;
+    border-radius: 5px;
     font-size: 18px;
-}
-header li a:hover {
-    color: #611915;
-    border-bottom:  0.1em solid #f9aa18;
-}
+    font-weight: bold;
+  }
+  
 
 .row{
     background-image: url(/wallpaper/25-FINAL-FINAL.png);
@@ -165,7 +229,6 @@ header li a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
     width: 100%;
     height: 85vh;
 }
@@ -212,16 +275,38 @@ label {
     text-align: center;
 }
 
-.check-latest-products-shop{
-    display: block;
+.fading-line{
+    width:100%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #00000023, transparent);
+    margin: 50px;
+}
+ 
+.filter {
+    width: 100%;
+    margin: 30px 130px;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+ .filter button {
+     display: block;
     text-align: center;
-    padding-bottom: 20px;
+    width: 10%;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+    background-color: #5b1515cc;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+.filter button:hover{
+    background-color: #d09f50;
+    color: rgb(255, 255, 255);
 }
 
-.check-latest-products-shop h2 {
-    font-size: 30px;
-    color: #040101d4;
-}
+
 
 @media (max-width: 768px) {
     header {
@@ -419,7 +504,7 @@ label {
 
   .vat {
     font-size: 12px;
-    margin: 5px ;
+    margin: 9px ;
 
   }
   
@@ -438,6 +523,7 @@ label {
   
   
 .favorite {
+    width: 15%;    
     color: #ccc;  
     border: none; 
     background-color: transparent;
@@ -468,4 +554,12 @@ label {
 .favorite:hover i {
   transform: scale(1.1);  
   color: #ff6666;  
+}
+
+
+/* Contact Form - Kanita*/
+
+.contact-container {
+    width: 100%;
+    background-color: #ba4d2e;
 }
