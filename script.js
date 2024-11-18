@@ -24,7 +24,6 @@ function scrollHorizontally(distance) {
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
       alert('Product added to cart!');
-      // Add product to cart logic here
     });
   });
   

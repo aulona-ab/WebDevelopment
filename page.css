@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
 
+
 }
 
 body{
@@ -193,7 +194,10 @@ header li a:hover {
     right: 10px;
   }
   
-  button:hover {
+  button.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  button.prev:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
 
@@ -208,105 +212,14 @@ header li a:hover {
     font-size: 18px;
     font-weight: bold;
   }
-  
 
-.row{
-    background-image: url(/wallpaper/25-FINAL-FINAL.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: row;
-}
-
-.section-left,
-.section-right {
-    flex: 1;
-    padding: 20px;
-}
-
-.section-left,.section-right{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 85vh;
-}
-
-.row h1{
-    font-size: 60px;
-    color: rgb(255, 255, 255);
-    margin-bottom: 20px;
-    margin-left: 100px;
-}
-
-.row h3{
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    text-shadow: 2px 2px 4px rgb(96, 12, 12);
-    margin-bottom: 20px;
-    margin-left: 100px;}
-
-.row p{
-    color: rgb(255, 255, 255);
-    margin-bottom: 20px;
-    margin-left: 100px;
-}
-
-.section-left button {
-    margin-bottom: 20px;
-    margin-left: 100px;
-    width: 120px;
-    border-radius: 20px;
-    border: 1px solid #ffd900;
-    background-color: #d4a555;
-    color: #ffffff;
-    font-weight: bold;
-    padding: 10px;
-    transition: color 0.3s ease;
-}
-.section-left button:hover{
-    background-color: #d4a555;
-    color: rgb(85, 72, 2);
-}
-
-label {
-    display: block;
-    text-align: center;
-}
 
 .fading-line{
-    width:100%;
+    width: 90%;
     height: 3px;
     background: linear-gradient(to right, transparent, #00000023, transparent);
-    margin: 50px;
+    margin: 40px;
 }
- 
-.filter {
-    width: 100%;
-    margin: 30px 130px;
-    display: flex;
-    justify-content: left;
-    align-items: left;
-}
- .filter button {
-     display: block;
-    text-align: center;
-    width: 10%;
-    border-radius: 20px;
-    border: 1px solid #ffffff;
-    background-color: #5b1515cc;
-    color: #ffffff;
-    font-weight: bold;
-    padding: 10px;
-    transition: color 0.3s ease;
-}
-.filter button:hover{
-    background-color: #d09f50;
-    color: rgb(255, 255, 255);
-}
-
-
 
 @media (max-width: 768px) {
     header {
@@ -332,20 +245,9 @@ label {
     }
 }
 
-.second-row {
-    width: 100%;
-    min-height: 500px;
-    background-color: white;
-    box-sizing: border-box;
-}
-
-.col-1 img{
-    max-width: 200px;
-}
-
 
 .news-section {
-    background-color: white;
+    background-color: rgba(192, 192, 192, 0.212);
     text-align: center;
     padding-top: 70px;
 }
@@ -363,7 +265,6 @@ label {
     margin-bottom: 20px;
 }
 .scroll-container {
-    background-color: white;
     position: relative;
     display: flex;
     align-items: center;
@@ -422,11 +323,11 @@ label {
 }
 /* Book shop ------------------------------------------------------------------------------------------------------------------- */ 
 .product-container {
-    background-color: rgba(255, 255, 255, 0.844);
-    display: grid;
+  background-color: rgba(192, 192, 192, 0.212);
+  display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
-    padding: 0 125px;
+    padding: 1px 125px 125px;
   }
   
   .product-card {
@@ -469,7 +370,7 @@ label {
   .product-image {
     width: 100%;
     height: auto;
-    max-height: 330px;
+    max-height: 500px;
     object-fit: cover;
     
   }
@@ -508,18 +409,31 @@ label {
 
   }
   
-  .add-to-cart {
+  .add-to-cart, .browse {
     border: none;
     padding: 7px 24px;
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
-  }
-  
-  .add-to-cart {
     background-color: #ba4d2e;
     color: white;
+    transition: color 0.7s ease;
+
   }
+
+  .browse {
+    background-color: #611915;
+    font-weight: bold;
+  }
+
+  button.browse:hover {
+    background-color: #8c5050;
+  }
+
+  button.add-to-cart:hover{
+   background-color: #d09f50;
+   color: rgb(255, 255, 255);
+}
   
   
 .favorite {
@@ -554,6 +468,76 @@ label {
 .favorite:hover i {
   transform: scale(1.1);  
   color: #ff6666;  
+}
+
+/* Footer section */
+.footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  height: 25vh;
+  gap: 150px;
+}
+.footer-text{
+  color: rgb(0, 0, 0);
+}
+.footer-icons{
+  color: black;
+ display: flex;
+ flex-direction: row;
+ gap: 20px;
+}
+
+.footer-icons ul {
+  gap: 20px;
+  padding: 0;
+  display: flex;
+}
+.footer-icons ul li{
+  list-style: none;
+}
+.footer-icons a{
+  text-decoration: none;
+  color: rgb(237, 110, 110);
+}
+
+.footer-newsletter {
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.footer-newsletter p {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.footer-newsletter input[type="email"] {
+  padding: 10px;
+  width: 60%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.footer-newsletter button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #5e2a20;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.footer-newsletter button:hover {
+  background-color: #b96963;
 }
 
 
