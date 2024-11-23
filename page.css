@@ -306,8 +306,8 @@ header li a:hover {
 
 /* Book shop ------------------------------------------------------------------------------------------------------------------- */ 
 .product-container {
-  background-color: rgba(192, 192, 192, 0.212);
-  display: grid;
+    background-color: rgba(192, 192, 192, 0.212);
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
     padding: 1px 125px 125px;
@@ -451,6 +451,19 @@ header li a:hover {
 .favorite:hover i {
   transform: scale(1.1);  
   color: #ff6666;  
+}
+
+
+/* book-collection img*/
+.book-collection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(178, 175, 175, 0.212);
+}
+
+.book-collection h1,p {
+  text-align: center;
 }
 
 /* community section*/
