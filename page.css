@@ -9,8 +9,6 @@
 body{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding-top: 70px;
-    width: 100%;
-    height: 100vh;
 
 }
 header{
@@ -478,7 +476,7 @@ header li a:hover {
   background-color: rgb(255, 255, 255);
   color: white;
   height: 25vh;
-  gap: 150px;
+  gap: 50px;
 }
 .footer-text{
   color: rgb(0, 0, 0);
