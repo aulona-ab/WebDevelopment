@@ -7,8 +7,8 @@
 }
 
 body{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding-top: 70px;
+  font-family: Arial, sans-serif;
+  padding-top: 70px;
 
 }
 header{
@@ -69,9 +69,7 @@ header{
 }
 
 .logo img{
-    margin-top: 10px;
-    height: 80px;
-    width: 230px;
+    max-width: 200px;
 }
 
 header ul{
@@ -83,13 +81,13 @@ header ul{
 }
 
 header li a{
-    text-decoration: none;
-    color: rgba(24, 24, 23, 0.734);
-    font-weight: 600;
+    text-decoration:none;
+    color: rgb(0, 0, 0);
     font-size: 17px;
 }
 header li a:hover {
-    color: #611915;
+    border-radius: 20px;
+    color: #000000;
     border-bottom:  0.1em solid #f9aa18;
 }
 
@@ -98,7 +96,7 @@ header li a:hover {
 }
 
 .genre-bar {
-    background-color: #f5f5f5; 
+    background-color: #ffffff; 
     padding: 10px 0;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -114,36 +112,16 @@ header li a:hover {
   }
   
   .genre-bar ul li a {
-    font-size: 17px;
+    font-size: 15px;
     text-decoration: none;
-    color: #333333de; 
-    font-weight: bold;
-    transition: color 0.3s ease;
+    color: #3d3c3c; 
+    transition: color 0.2s ease;
   }
   
   .genre-bar ul li a:hover {
     color: #e5a329; 
     text-decoration: none;
   }
-
-
-  .offer-banner {
-    background-color: rgb(104, 17, 17);
-    color: rgb(250, 212, 123);
-    text-align: center;
-    padding: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    transition: color 0.3s ease;
-
-}
-
-.offer-banner:hover{
-    color: #fff713;
-}
 
 .carousel-container {
     position: relative;
@@ -469,75 +447,93 @@ header li a:hover {
 }
 
 /* Footer section */
-.footer{
+footer {
+  background-color: white;
+  padding: 50px;
+  border-top: 1px solid #ccc;
+}
+
+.footer-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(255, 255, 255);
-  color: white;
-  height: 25vh;
-  gap: 50px;
-}
-.footer-text{
-  color: rgb(0, 0, 0);
-}
-.footer-icons{
-  color: black;
- display: flex;
- flex-direction: row;
- gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
-.footer-icons ul {
-  gap: 20px;
-  padding: 0;
-  display: flex;
-}
-.footer-icons ul li{
-  list-style: none;
-}
-.footer-icons a{
-  text-decoration: none;
-  color: rgb(237, 110, 110);
+.footer-section-links {
+  font-size: 15px;
 }
 
-.footer-newsletter {
-  text-align: center;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-radius: 5px;
-}
-
-.footer-newsletter p {
-  font-size: 18px;
+.footer-section-links h3 {
+  font-size: 15px;
   margin-bottom: 10px;
-  color: #333;
 }
 
-.footer-newsletter input[type="email"] {
-  padding: 10px;
-  width: 60%;
-  max-width: 400px;
+.footer-section-links ul{
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section-links ul li{
+  margin-bottom: 8px;
+}
+.footer-section-links ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section-links ul li a:hover {
+  color: #611915;
+  text-decoration: underline;
+}
+.footer-section-subscribe form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section-subscribe{
+  max-width: 40%;
+}
+
+.footer-section-subscribe input {
+  padding: 8px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 4px;
 }
 
-.footer-newsletter button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #5e2a20;
-  color: white;
+.footer-section-subscribe button {
+  padding: 8px;
+  background-color: #660e0e;
+  color: #fff;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
-}
+  }
 
-.footer-newsletter button:hover {
-  background-color: #b96963;
-}
+  .footer-section-subscribe button:hover {
+    background-color: #b74a4a;
+  }
 
+  .footer-section-subscribe p{
+    max-width: 100%;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .footer-bottom-section {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .footer-bottom-section a{
+    text-decoration: none;
+    color: #1124b1;
+  }
+  .footer-bottom-section a:hover {
+    text-decoration: underline;
+  }
 
 /* Contact Form - Kanita*/
 
