@@ -453,6 +453,56 @@ header li a:hover {
   color: #ff6666;  
 }
 
+/* community section*/
+
+.community {
+  background-image: url(https://st3.depositphotos.com/25371908/32587/i/450/depositphotos_325873958-stock-photo-public-library-book-store-blurred.jpg);
+  background-size: contain;
+  height: 300px;
+  padding: 100px 40px;
+}
+.sentence,.sentence1 {
+  padding: 10px 0;
+  color: white;
+}
+
+.community button {
+    padding: 10px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+.buttons {
+  display: inline-flex;
+  gap: 15px;
+  
+}
+
+
+.subscribe {
+  background-color: #782d2d;
+  color: white;
+}
+
+.subscribe:hover {
+  background-color: #000;
+}
+
+.learn-more {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.learn-more:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.learn-more button {
+  background-color: transparent;
+}
+
 /* Footer section */
 footer {
   background-color: white;
