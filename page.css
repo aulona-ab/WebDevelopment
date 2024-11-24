@@ -107,7 +107,7 @@ header li a:hover {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 15px;
     padding: 0;
     margin: 0;
   }
@@ -454,16 +454,71 @@ header li a:hover {
 }
 
 
-/* book-collection img*/
-.book-collection {
+/* book-collection section*/
+
+.books {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: rgba(192, 192, 192, 0.212);
   justify-content: center;
-  background-color: rgba(178, 175, 175, 0.212);
+
 }
 
-.book-collection h1,p {
+.text{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.texti, .subhead{
+  padding: 10px 0px;
+}
+
+.text button {
+  background-color: white;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: auto;
+  align-self: flex-start;
+}
+
+.text button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(58, 7, 7);
+  color: rgb(66, 14, 14);
+}
+
+.book-collection1 {
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  padding: 15px;
+  box-sizing: border-box;
+  position: relative;
+
+}
+.book-collection1 img{
+  border-radius: 50px;
+  padding: 15px 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.line {
   text-align: center;
+  background-color: rgba(192, 192, 192, 0.212);
+}
+
+.line hr {
+  margin: 0 auto;
+  border: 1px solid rgb(58, 7, 7);
+  width: 50%;
 }
 
 /* community section*/
