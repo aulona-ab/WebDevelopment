@@ -253,21 +253,12 @@ header li a:hover {
 
     .news-section {
     background-color: rgba(192, 192, 192, 0.212);
-    text-align: center;
-    padding-top: 60px;
 }
 
 .news-title {
-    font-size: 28px;
-    font-weight: bold;
+    margin-left: 115px;
+    padding: 10px;
     color: #333;
-}
-
-.authors-info {
-    font-size: 16px;
-    color: #555;
-    margin-top: 10px;
-    margin-bottom: 20px;
 }
 .scroll-container {
     position: relative;
@@ -276,21 +267,26 @@ header li a:hover {
     padding: 0 100px 50px;
 }
 
+.news-section button {
+  float: right;
+  padding: 0 10px;
+  border: none;
+  font-size: 15px;
+}
+
 .horizontal-scroll {
     display: flex;
     overflow-y: hidden;
-    gap: 10px;
+    gap: 20px;
     width: 100%; 
 }
 
 .scroll-left, .scroll-right {
-    background-color: rgba(231, 226, 226, 0.699);
     color: rgb(0, 0, 0);
-    border-radius: 70px;
-    border: 2px solid #b9b9b9;
+    border: none;
     cursor: pointer;
     padding: 15px;
-    font-size: 24px;
+    font-size: 30px;
     z-index: 10;
 }
 
@@ -305,16 +301,21 @@ header li a:hover {
 .book-item {
     flex-shrink: 0;
     overflow: hidden;
-    border-radius: 3px;
     transition: transform 0.5s; 
 }
 
-.book-item:hover {
-    transform: scale(1.05); 
+.book-item p{
+  font-size: 13px;
+}
+
+.book-item img:hover {
+    transform: scale(1.03); 
 }
 
 .book-item img {
-    height: 220px;
+  transition: transform 0.5s; 
+
+    height: 230px;
     width: 150px;
 }
 
@@ -326,7 +327,7 @@ header li a:hover {
 .shop-img-scroll-down img{
     width: 150px;
 }
-/* ads section */
+/* ads section -------------------------------------------------------------------------------------------------------------------*/
 
 .ads-section {
   background-color:  rgba(192, 192, 192, 0.212);
@@ -569,6 +570,10 @@ header li a:hover {
   padding: 10px 0px;
 }
 
+.texti{
+  font-size: 14.5px;
+}
+
 .text button {
   background-color: white;
   border: 1px solid transparent;
@@ -591,7 +596,7 @@ header li a:hover {
   display: flex;
   flex-direction: column;
   max-width: 30%;
-  padding: 15px;
+  padding: 5px;
   box-sizing: border-box;
   position: relative;
 
@@ -607,18 +612,85 @@ header li a:hover {
 .line {
   text-align: center;
   background-color: rgba(192, 192, 192, 0.212);
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .line hr {
+  width: 85%;
+  margin: 20px auto;
+  border: 0;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.38);
-  width: 80%;
 }
 
 .line p {
   font-size: 13px;
   padding: 20px;
+  color: #333;
+  padding: 15px 0;
+  line-height: 1.6;
+}
+
+/* about us part */
+.another-part, .extra-part {
+  background-color: rgba(192, 192, 192, 0.212);
+}
+
+.about-us-small-part {
+  width: 80%;
+  padding: 0 150px;
+}
+
+.about-us-small-part h3 {
+  text-transform: uppercase;
+  color: #000;
+}
+
+.about-us-extra-part {
+  width: 100%;
+  text-align: center;
+  padding: 3% 23%;
+}
+
+.about-us-extra-part h4 {
+  text-align: left;
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.about-us-extra-part p {
+  text-align: left;
+  font-size: 12px;
+  color: #333;
+  line-height: 1.8;
+}
+
+.about-us-extra-part button {
+  cursor: pointer;
+  border: none;
+}
+
+.about-us-extra-part a {
+  color: #000;
+}
+
+.wide {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+@media (max-width: 768px) {
+  .line {
+      max-width: 100%;
+  }
+
+  .about-us-extra-part {
+      padding: 0 5%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -653,8 +725,8 @@ header li a:hover {
 }
 
 .iconss i{
-  color: #660e0edd;
-  margin: 15px 100px;
+  color: #370808dd;
+  margin: 5px 30px;
   font-size: 25px;
   cursor: pointer;
 
@@ -734,7 +806,7 @@ footer {
 }
 
 .footer-section-links {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .footer-section-links h3 {
@@ -762,12 +834,16 @@ footer {
 .footer-section-subscribe form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .footer-section-subscribe{
   max-width: 40%;
 }
 
+.footer-section-subscribe h5 {
+  margin: 10px 0;
+}
 .footer-section-subscribe input {
   padding: 8px;
   margin-bottom: 10px;
@@ -790,8 +866,9 @@ footer {
 
   .footer-section-subscribe p{
     max-width: 100%;
-    font-size: 14px;
+    font-size: 13px;
     color: #555;
+    margin-bottom: 8px;
   }
 
   .footer-bottom-section {
