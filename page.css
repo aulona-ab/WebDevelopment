@@ -249,6 +249,8 @@ header li a:hover {
                .ads-section img {
                 height: 200px;
                }
+
+            
     }
 
     .news-section {
@@ -282,11 +284,12 @@ header li a:hover {
 }
 
 .scroll-left, .scroll-right {
+    background-color: #ffffff;
     color: rgb(0, 0, 0);
     border: none;
     cursor: pointer;
-    padding: 15px;
-    font-size: 30px;
+    padding: 30px;
+    border-radius: 100px;
     z-index: 10;
 }
 
@@ -299,6 +302,7 @@ header li a:hover {
 }
 
 .book-item {
+    text-align: center;
     flex-shrink: 0;
     overflow: hidden;
     transition: transform 0.5s; 
@@ -306,7 +310,9 @@ header li a:hover {
 
 .book-item p{
   font-size: 13px;
-}
+  text-align: center;
+  color: #000;
+  }
 
 .book-item img:hover {
     transform: scale(1.03); 
@@ -327,9 +333,31 @@ header li a:hover {
 .shop-img-scroll-down img{
     width: 150px;
 }
+
+@media (max-width: 768px) {
+  .scroll-container {
+      padding: 0 20px 30px;
+  }
+
+  .horizontal-scroll {
+      gap: 10px;
+  }
+
+  .book-item img {
+      height: 200px;
+      width: 120px;
+  }
+
+  .news-title {
+    margin-left: 36px;
+    padding: 10px;
+    color: #333;
+     }
+}
+
 /* ads section -------------------------------------------------------------------------------------------------------------------*/
 
-.ads-section {
+.ads-section,.ads-section1 {
   background-color:  rgba(192, 192, 192, 0.212);
   padding: 15px;
   text-align: center;
@@ -337,6 +365,10 @@ header li a:hover {
 .ads-section img{
   height: 230px;
   width: 90%;
+}
+
+.ads-section h2 {
+  text-align: left;
 }
 
 
@@ -543,7 +575,7 @@ header li a:hover {
 
 
 
-/* book-collection section*/
+/* author-collection section*/
 
 .books {
   display: flex;
@@ -559,6 +591,7 @@ header li a:hover {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    font-family: 'Playfair Display', serif;
 }
 
 .texto {
@@ -571,7 +604,7 @@ header li a:hover {
 }
 
 .texti{
-  font-size: 14.5px;
+  font-size: 15px;
 }
 
 .text button {
@@ -602,7 +635,7 @@ header li a:hover {
 
 }
 .book-collection1 img{
-  border-radius: 40px;
+  border-radius: 200px;
   padding: 15px 0;
   width: 100%;
   height: auto;
@@ -625,16 +658,19 @@ header li a:hover {
 }
 
 .line p {
-  font-size: 13px;
+  font-size: 15px;
   padding: 20px;
   color: #333;
   padding: 15px 0;
   line-height: 1.6;
+  font-family: 'Playfair Display', serif;
+
 }
 
-/* about us part */
+/* ABOUT US part ------------------------------------------------------------------------------------------------------------------------------*/
 .another-part, .extra-part {
   background-color: rgba(192, 192, 192, 0.212);
+  font-family: 'Playfair Display', serif;
 }
 
 .about-us-small-part {
@@ -655,7 +691,7 @@ header li a:hover {
 
 .about-us-extra-part h4 {
   text-align: left;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   color: #000;
   margin-bottom: 15px;
@@ -663,7 +699,7 @@ header li a:hover {
 
 .about-us-extra-part p {
   text-align: left;
-  font-size: 12px;
+  font-size: 14.5px;
   color: #333;
   line-height: 1.8;
 }
