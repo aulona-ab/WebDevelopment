@@ -920,6 +920,7 @@ footer {
   .footer-bottom-section a:hover {
     text-decoration: underline;
   }
+<<<<<<< HEAD
 /*Kanita Contact form */
 
 textarea{
@@ -996,6 +997,10 @@ video{
   padding: 30px;
 }
 
+=======
+
+/* Contact Form - Kanita*/
+>>>>>>> 588162567de7fb9597fe6bb825a59b856339335b
 
 .contact-container {
     width: 100%;
