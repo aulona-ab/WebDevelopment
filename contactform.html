@@ -55,7 +55,7 @@
                         class="komenti" placeholder="Enter your message"></textarea><br>        
                 </div>        <br>               
                 
-                <button class="submit"> <i class="submit">Submit</i></button>
+                <button class="submit" onclick="validateForm(event)"> <i class="submit">Submit</i></button>
                 
             </div>
         </div>
@@ -153,6 +153,26 @@
           <div class="footer-bottom-section">
             <p>© 2024 Luminous. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Cookie Settings</a></p>
           </div>
+
+          <script>
+            function validateForm(event) {
+            event.preventDefault();
+
+            var firstName = document.getElementById("emri").value;
+            var lastName = document.getElementById("mbiemri").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("komenti").value;
+
+            if (firstName == "" || lastName == "" || email == "" || message == "") {
+                alert("All fields are required.");
+            } else {
+                alert("Form submitted successfully!");
+                document.getElementById("contact-form").submit();
+            }
+        }
+          </script>
+
+        
         </footer>
   
   
