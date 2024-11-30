@@ -920,8 +920,82 @@ footer {
   .footer-bottom-section a:hover {
     text-decoration: underline;
   }
+/*Kanita Contact form */
 
-/* Contact Form - Kanita*/
+textarea{
+  padding: 10px 478px 50px 10px;
+  border-radius: 7px;
+  border: 2px solid gray;
+  font-size: 18px;
+}
+button{
+  padding: 10px 50px 10px 50px;
+  margin-top: 20px;
+  margin-left: 15px;
+  border-radius: 50px;
+  background: rgb(217,119,149);
+  background: linear-gradient(100deg, rgba(217,119,149,1) 0%, rgba(122,22,53,1) 73%);
+  font-size: 20px;
+  color: white;
+  border-color: #30001b;
+
+}
+button:hover{
+  background: rgb(122,22,53);
+  background: linear-gradient(100deg, rgba(122,22,53,1) 0%, rgba(217,119,149,1) 73%);
+  color: rgb(74, 9, 40);
+}
+label{
+  font-size: 20px;
+}
+
+  @media (max-width: 768px) {
+    .header-search input {
+        width: 100%;
+    }
+  }
+  .box1{
+    width: 40%;
+}
+.box2{
+    width: 60%;
+}
+video{
+    width: 80%;
+    border-radius: 10px;
+    margin-right: -20px;
+    margin-left: 50px;
+}
+.emri{
+    padding: 10px 80px 10px 10px;
+    
+}
+.emri1{
+    padding: 10px 80px 10px 10px;
+}
+.mail{
+    padding: 10px 460px 10px 10px;
+   
+}
+
+.komenti{
+    margin-left: 15px;
+    padding: 10px 80px 10px 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.content{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content:space-around;
+}
+.all{
+  width: 97%;
+  margin-top: -50px;
+  padding: 30px;
+}
+
 
 .contact-container {
     width: 100%;
