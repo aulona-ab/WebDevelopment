@@ -21,8 +21,8 @@
             <input type="email" id="email" placeholder="Email">
             <input type="password" id="password" placeholder="Password">
             <a href="./ResetPassword">Forgot your password?</a>
-            <a href="./home.html"><button>Sign In</button></a>
-            <a href="./register.html"><button class="join-button" id="joinButton">Join Now</button></a>
+            <a href="./home.html"><button onclick="validateLogin()">Sign In</button></a>
+            <a href="./register.html"><button class="join-button" id="joinButton" onclick="validateLogin()">Join Now</button></a>
         </div>
         <div class="login-img" id="loginImg">
             <div class="login-text">
@@ -34,7 +34,36 @@
         </div>
     </div>
     <p class="footer-credit">© 2024 Luminous. All rights reserved.</p>
+    <script>
 
+function validateLogin() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (!email) {
+                alert("Please enter your email address.");
+                return;
+            }
+
+            if (!password) {
+                alert("Please enter your password.");
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            alert("Login successful!");
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+    </script>
     
 
     
