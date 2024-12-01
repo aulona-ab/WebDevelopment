@@ -65,7 +65,7 @@
         <label for="message">Message:</label>
         <textarea id="message" name="message" placeholder="Write your message here" required></textarea>
 
-        <button type="submit">Send Message</button>
+        <button type="submit" onclick="validateForm()">Send Message</button>
     </form>
 </div>
  </div>
@@ -182,6 +182,46 @@
             <p>© 2024 Luminous. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Cookie Settings</a></p>
           </div>
         </footer>
+        <script>
+          function validateForm() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const subject = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name) {
+                alert("Please enter your full name.");
+                return;
+            }
+
+            if (!email) {
+                alert("Please enter your email address.");
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            if (!subject) {
+                alert("Please enter the subject.");
+                return;
+            }
+
+            if (!message) {
+                alert("Please enter your message.");
+                return;
+            }
+
+            alert("Your message has been sent successfully!");
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
   
   
   
