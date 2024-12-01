@@ -20,52 +20,62 @@
         <ul>
             <li><a href="./home.html">Home</a></li>
             <li><a href="./home.html">About Us</a></li>
-            <li><a href="./home.html">Contact</a></li>
+            <li><a href="./contact.html">Contact</a></li>
             <li><a href="./home.html">Bookmarks</a></li>
             <li><a href="./home.html"><i class="fas fa-shopping-cart"></i></a></li>
-            <li><a href="./home.html"><i class="fas fa-user"></i></a></li>
+            <li><a href="./profile.html"><i class="fas fa-user"></i></a></li>
         </ul>
     </header>
-    <br><br>
-    <div class="all">
-        <div class="header">
-            <h1>HAVE SOME QUESTIONS OR A MESSAGE?</h1>
+    <div class="genre-container">
+      <nav class="genre-bar">
+          <ul>
+            <li><a href="#romance">Gift Cards</a></li>
+            <li><a href="#romance">Best Sellers</a></li>
+            <li><a href="#romance">New Arrivals</a></li>
+            <li><a href="#romance">Top Picks</a></li>
+            <li><a href="#romance">Free Shipping</a></li>
+            <li><a href="#non-fiction">Author Events</a></li>
+            <li><a href="#romance">YA</a></li>
+            <li><a href="#mystery">Audiobooks</a></li>
+            <li><a href="#fantasy">eBooks</a></li>
+            <li><a href="#sci-fi">Fiction</a></li>
+            <li><a href="#non-fiction">Non-Fiction</a></li>
+            <li><a href="#non-fiction">Kids</a></li>
+          </ul>
+        </nav>
+      </div>
+ <br>
+ <div class="texti2">
+  <h1>We'd Love to Hear From You!</h1>
+  <p class="subtitle">If you have any questions or need assistance, reach out to us and we'll get back to you as soon as possible.</p>
+ </div>
+ 
+ </div>
+
+
+    <div class="line">
+        <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>
+          Over 5 million books ready to ship, 3.6 million eBooks and 300,000 audiobooks to download right now! Curbside pickup available in most stores!</p>
+        <hr>
+       </div>
+
+       <div class="another-part">
+        <div class="about-us-small-part">
+          <h2>Get to Know Luminous Online</h2>
         </div>
-        <br><br><br>
-        <div class="content">
-            <div class="box1">
-              <p class="left-paragraph">Feel free to reach out and ask questions, give ideas or feedback. 
-                <br><br>
-                To do so, please fill out the form and our team will get in touch with you</p>
-              <br><br>
-                <br>
-            </div>
-            <div class="box2">
-                <div class="pjesa">
-                    <div class="pjesa1">
-                        <label for="emri"> First Name</label> <br><br>
-                        <input type="text" class="mail" id="emri" placeholder="Enter your name"><br><br>
-                        <label for="mbiemri"> Last Name </label> <br><br>
-                        <input type="text" class="mail" id="mbiemri" placeholder="Enter your surname"><br><br>
-                        <label for="email"> Email</label> <br><br>
-                        <input type="text" class="mail" id="email" placeholder="Enter your Email Adress"><br><br>
-                        <label for="komenti">Your message</label><br><br>
-                  
-                        <textarea name="komenti" id="komenti" 
-                        class="komenti" placeholder="Enter your message"></textarea><br>        
-                </div>        <br>               
-                
-                <button class="submit" onclick="validateForm(event)"> <i class="submit">Submit</i></button>
-                
-            </div>
+       </div>
+
+        <div class="extra-part">
+        <div class="about-us-extra-part">
+          <h4>Buy Books Online at Luminous.com, America’s Favorite Bookstore</h4>
+          <p>No matter what you’re a fan of, from <a href="#">Fiction</a> to<a href="#"> Biography</a>, <a href="">Sci-Fi</a>, <a href="">Mystery</a>, <a href="">YA</a>, <a href="">Manga</a>, and more, 
+            LUMINOUS has the perfect book for you. Shop bestselling books from the <a href="#">NY Times Bestsellers list</a>, 
+            or get personalized recommendations to find something new and unique! Discover <a href="">kids books</a> for children of all ages 
+            including classics like <a href="#">Dr. Seuss</a> to modern favorites like the <a href="#">Dog Man series</a>.</p>
+            <button><a href="#">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
+            </button>
+          </div>
         </div>
-    </div>
-
-
-
-
-
-
 
     <div class="community">
         <h1 class="sentence1"> Join Our Book Lover Community</h1>
@@ -153,26 +163,6 @@
           <div class="footer-bottom-section">
             <p>© 2024 Luminous. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Cookie Settings</a></p>
           </div>
-
-          <script>
-            function validateForm(event) {
-            event.preventDefault();
-
-            var firstName = document.getElementById("emri").value;
-            var lastName = document.getElementById("mbiemri").value;
-            var email = document.getElementById("email").value;
-            var message = document.getElementById("komenti").value;
-
-            if (firstName == "" || lastName == "" || email == "" || message == "") {
-                alert("All fields are required.");
-            } else {
-                alert("Form submitted successfully!");
-                document.getElementById("contact-form").submit();
-            }
-        }
-          </script>
-
-        
         </footer>
   
   
