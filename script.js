@@ -1,6 +1,7 @@
-const scrollContainer = document.querySelector('.horizontal-scroll');
-const scrollLeftBtn = document.querySelector('.scroll-left');
-const scrollRightBtn = document.querySelector('.scroll-right');
+document.querySelectorAll('.scroll-container').forEach(container => {
+  const scrollContainer = container.querySelector('.horizontal-scroll');
+const scrollLeftBtn = container.querySelector('.scroll-left');
+const scrollRightBtn = container.querySelector('.scroll-right');
 
 scrollLeftBtn.addEventListener('click', () => {
     scrollContainer.scrollBy({
@@ -32,6 +33,10 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
       button.classList.toggle('favorited');
     });
   });
+});
+
+
+
 
   const carousel = document.querySelector('.carousel');
 const slides = document.querySelectorAll('.slide');
