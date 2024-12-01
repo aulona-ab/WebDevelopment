@@ -34,36 +34,7 @@
         </div>
     </div>
     <p class="footer-credit">© 2024 Luminous. All rights reserved.</p>
-    <script>
 
-function validateLogin() {
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
-
-            if (!email) {
-                alert("Please enter your email address.");
-                return;
-            }
-
-            if (!password) {
-                alert("Please enter your password.");
-                return;
-            }
-
-            if (!validateEmail(email)) {
-                alert("Please enter a valid email address.");
-                return;
-            }
-
-            alert("Login successful!");
-        }
-
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-    </script>
     
 
     

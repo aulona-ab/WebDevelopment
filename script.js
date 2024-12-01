@@ -61,4 +61,61 @@ prevButton.addEventListener('click', () => {
   updateCarousel();
 });
 
+function validateForm() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const subject = document.getElementById("subject").value.trim();
+  const message = document.getElementById("message").value.trim();
+  if (!name) {
+      alert("Please enter your full name.");
+      return;
+  }
+  if (!email) {
+      alert("Please enter your email address.");
+      return;
+  }
+  if (!validateEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+  }
+  if (!subject) {
+      alert("Please enter the subject.");
+      return;
+  }
+  if (!message) {
+      alert("Please enter your message.");
+      return;
+  }
+  alert("Your message has been sent successfully!");
+}
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+
+
+function validateLogin() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  if (!email) {
+      alert("Please enter your email address.");
+      return;
+  }
+  if (!password) {
+      alert("Please enter your password.");
+      return;
+  }
+  if (!validateEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+  }
+  alert("Login successful!");
+}
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+
   
