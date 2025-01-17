@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: url(./wallpaper/25.png);
+    background-image: url(./wallpaper/login-wallpaper2.jpg);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -26,19 +26,44 @@ h1{
     font-weight: bold;
 }
 
+form {
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; 
+}
+
+
+form input {
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+form button {
+    max-width: 300px;
+    width: 100%; 
+    padding: 12px 45px;
+    margin-top: 10px;
+}
 
 
 .login{
-    
     background-color: #fdfdfd;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 20px;
-    height: 68%;
+    padding: 50px;
     width: 100%;
-    max-width: 800px;
+    height: 75%;
+    max-width: 400px;
     text-align: center;
     border-radius: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -55,14 +80,9 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;    
+    padding: 0 5px;    
 }
-.login-img{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;    
-}
+
 
 .login-form a:hover{
     color: rgb(43, 32, 6);
@@ -77,7 +97,7 @@ h1{
     padding: 20px;
     height: 85%;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
     border-radius: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -91,20 +111,23 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;  
+    padding: 10px;  
     width: 100%;
-    max-width: 300px;  
 }
 
 .register-form a:hover{
     color: rgb(43, 32, 6);
 }
 
+.register-img {
+    padding: 15px;
+}
+
 a {
-    color: #b79b0f;
+    color: #1c5369;
     font-size: 14px;
     text-decoration: none;
-    margin: 15px 0;
+    margin: 14px;
 }
 .not-link p {
     color: #947f19;
@@ -124,8 +147,8 @@ input{
 
 button, register-button{
     border-radius: 20px;
-    border: 1px solid #ffd900;
-    background-color: #d5b92d;
+    border: 1px solid #6d2a2a00;
+    background-color: #6d2a2a;
     color: #ffffff;
     font-size: 12PX;
     font-weight: bold;
@@ -139,8 +162,7 @@ button, register-button{
 
 
 button:hover{
-    background-color: #d4a555;
-    color: rgb(85, 72, 2);
+    background-color: #974f4f;
 }
 
 .form-check {
@@ -153,7 +175,7 @@ button:hover{
     max-width: 10px;
     margin-right: 10px;
     cursor: pointer;
-    accent-color: #e5a329; 
+    accent-color: #924444; 
 }
 .form-check-label {
     font-size: 16px;
@@ -175,9 +197,57 @@ input:checked ~ .form-check-label {
     color: #4CAF50;
 }
 
-.form-check-label:hover {
-    color: #e5a329;
+
+#role {
+    width: 100%;
+    max-width: 50%;
+    padding: 2px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
 }
+
+.success-message {
+    background-color: #28a745;  
+    color: white;                
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: #4CAF50; 
+}
+
+.modal-content p {
+    color: #555;
+}
+
+
 
 
 

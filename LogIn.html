@@ -1,86 +1,45 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beta Login Version</title>
+    <title> Login </title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="script.js"></script>
 </head>
+
 <body>
+
+
+    <form action="login.php" method="post">
     <div class="login">
         <div class="login-form" id="loginForm">
             <h1>Sign In</h1>
             <div class="social-icons">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google"></i></a>
-            <a href="#" class="'social"><i class="fab fa-pinterest"></i></a>
+                <a href="#" class="social"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social"><i class="fab fa-google"></i></a>
+                <a href="#" class="'social"><i class="fab fa-pinterest"></i></a>
             </div>
             <p>or use your account</p>
-            <input type="email" id="email" placeholder="Email">
-            <input type="password" id="password" placeholder="Password">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <a href="./ResetPassword">Forgot your password?</a>
-            <a href="./home.html"><button onclick="validateLogin()">Sign In</button></a>
-            <a href="./register.html"><button class="join-button" id="joinButton" onclick="validateLogin()">Join Now</button></a>
-        </div>
-        <div class="login-img" id="loginImg">
-            <div class="login-text">
-            <h1>Hello Fellow Dreamers!</h1>
-            <p>Unlock a World of Stories at Your Fingertips!</p>
-            </div>
-            <a href="./register.html"><button id="joinNowImgButton">Join Now</button></a>
-
+            <a href="./register.html" style="margin-top: 1px;">No account? Sign up now!</a>
+            <button type="submit">Sign In</button>
         </div>
     </div>
+    </form>
     <p class="footer-credit">© 2024 Luminous. All rights reserved.</p>
 
-    
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <h2>Login Successful!</h2>
+        <p>Welcome back to the Luminous Bookstore.</p>
+    </div>
+</div>
+
 
     
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beta Login Version</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="script.js"></script>
-</head>
-<body>
-    <div class="login">
-        <div class="login-form" id="loginForm">
-            <h1>Sign In</h1>
-            <div class="social-icons">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social"><i class="fab fa-google"></i></a>
-            <a href="#" class="'social"><i class="fab fa-pinterest"></i></a>
-            </div>
-            <p>or use your account</p>
-            <input type="email" id="email" placeholder="Email">
-            <input type="password" id="password" placeholder="Password">
-            <a href="./ResetPassword">Forgot your password?</a>
-            <a href="./home.html"><button onclick="validateLogin()">Sign In</button></a>
-            <a href="./register.html"><button class="join-button" id="joinButton" onclick="validateLogin()">Join Now</button></a>
-        </div>
-        <div class="login-img" id="loginImg">
-            <div class="login-text">
-            <h1>Hello Fellow Dreamers!</h1>
-            <p>Unlock a World of Stories at Your Fingertips!</p>
-            </div>
-            <a href="./register.html"><button id="joinNowImgButton">Join Now</button></a>
-
-        </div>
-    </div>
-    <p class="footer-credit">© 2024 Luminous. All rights reserved.</p>
-
-    
-
-    
-</body>
->>>>>>> 62ce0e326fe7a072c4f7b01d734e01e0779b3922
 </html>
