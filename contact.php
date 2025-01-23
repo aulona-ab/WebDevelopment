@@ -71,7 +71,7 @@
       <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 7:00 PM <br> Sat-Sun: 10:00 AM - 5:00 PM</p>
     </div>
     <div class="contact-container">
-      <form action="#" method="post">
+      <form action="#" method="post" class="contact-form">
           <label for="name">Full Name:</label>
           <input type="text" id="name" name="name" placeholder="Enter your full name" required>
   
@@ -115,93 +115,94 @@
           </div>
         </div>
 
-    <div class="community">
-        <h1 class="sentence1"> Join Our Book Lover Community</h1>
-        <p class="sentence">Stay updated with the latest releases, exclusive offers, and book recommendations tailored for you!</p>
-        <div class="buttons">
-          <button class="subscribe">Subscribe</button>
-          <button class="learn-more">Learn More</button>
+    
+  <div class="community">
+    <h1 class="sentence1"> Join Our Book Lover Community</h1>
+    <p class="sentence">Stay updated with the latest releases, exclusive offers, and book recommendations tailored for you!</p>
+    <div class="buttons">
+        <button class="learn-more">Learn More</button>
+    </div>
+</div>
+
+
+      <footer>
+        <div class="footer-container">
+          <div class="footer-section-links">
+            <h3>SERVICES</h3>
+              <ul>
+                <li><a href="./home.html">Affiliate Program</a></li>
+                <li><a href="./home.html">Publisher & Author <br>
+                  Guidelines</a></li>
+                <li><a href="./home.html">Order Discounts</a></li>
+                <li><a href="./home.html">Mobile App</a></li>
+                <li><a href="./home.html">Membership</a></li>
+                <li><a href="./home.html">Mastercard</a></li>
+                <li><a href="./home.html">Bookfairs</a></li>
+                <li><a href="./home.html">Press</a></li>
+              </ul>
+          </div>
+          <div class="footer-section-links">
+            <h3>ABOUT US</h3>
+              <ul>
+                <li><a href="./home.html">About Luminous</a></li>
+                <li><a href="./home.html">Contact</a></li>
+                <li><a href="./home.html">FAQs</a></li>
+                <li><a href="./home.html">Blog</a></li>
+                <li><a href="./home.html">Support</a></li>
+              </ul>
+          </div>
+          <div class="footer-section-links">
+            <h3>CATEGORY</h3>
+              <ul>
+                <li><a href="./home.html">Best Sellers</a></li>
+                <li><a href="./home.html">Books</a></li>
+                <li><a href="./home.html">Fiction</a></li>
+                <li><a href="./home.html">Non-Fiction</a></li>
+                <li><a href="./home.html">eBooks</a></li>
+                <li><a href="./home.html">Audiobooks</a></li>
+                <li><a href="./home.html">YA</a></li>
+                <li><a href="./home.html">Kids</a></li>
+              </ul>
+          </div>
+          <div class="footer-section-links">
+            <h3>HELP CENTER</h3>
+              <ul>
+                <li><a href="./home.html">Holiday Shipping</a></li>
+                <li><a href="./home.html">Shipping & Return</a></li>
+                <li><a href="./home.html">Store Pickup</a></li>
+                <li><a href="./home.html">Order Status</a></li>
+                <li><a href="./home.html">Gift Cards</a></li>
+              </ul>
+          </div>
+          <div class="footer-section-links">
+            <h3>STAY CONNECTED</h3>
+              <ul>
+                <li><a href="./home.html"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="./home.html"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="./home.html"><i class="fab fa-discord"></i> Discord</a></li>
+                <li><a href="./home.html"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                <li><a href="./home.html"><i class="fab fa-tiktok"></i> TikTok</a></li>
+              </ul>
+          </div>
+          <div class="footer-section-subscribe">
+                <h3>Subscribe</h3>
+                <form action="subscribe.php" method="POST" class="sub-form">
+                    <input type="email" name="email" placeholder="Your Email Here" required>
+                    <button type="submit" name="subscribe">Join</button>
+                </form>
+            <p>Submit your email address to receive Luminous offers <br> & updates.
+              You can view Luminous's <a href="#">Privacy Policy</a> here. <br>Unsubscribe from our emails at any time.</p> <br>
+              <h5>Rewards</h5>
+              <p>Enroll in Rewards for <b>FREE</b>. Watch your savings add up!</p>
+              <p><a href="#">Learn More</a>   <a href="#">Sign Up Free</a></p>
+          </div>
         </div>
-      </div>
-  
-        <footer>
-          <div class="footer-container">
-            <div class="footer-section-links">
-              <h3>SERVICES</h3>
-                <ul>
-                  <li><a href="./home.html"> Affiliate Program</a></li>
-                  <li><a href="./home.html">Publisher & Author <br>
-                    Guidelines</a></li>
-                  <li><a href="./home.html">Order Discounts</a></li>
-                  <li><a href="./home.html">Mobile App</a></li>
-                  <li><a href="./home.html">Membership</a></li>
-                  <li><a href="./home.html">Mastercard</a></li>
-                  <li><a href="./home.html">Bookfairs</a></li>
-                  <li><a href="./home.html">Press</a></li>
-                </ul>
-            </div>
-            <div class="footer-section-links">
-              <h3>ABOUT US</h3>
-                <ul>
-                  <li><a href="./home.html">About Luminous</a></li>
-                  <li><a href="./home.html">Contact</a></li>
-                  <li><a href="./home.html">FAQs</a></li>
-                  <li><a href="./home.html">Blog</a></li>
-                  <li><a href="./home.html">Support</a></li>
-                </ul>
-            </div>
-            <div class="footer-section-links">
-              <h3>CATEGORY</h3>
-                <ul>
-                  <li><a href="./home.html">Best Sellers</a></li>
-                  <li><a href="./home.html">Books</a></li>
-                  <li><a href="./home.html">Fiction</a></li>
-                  <li><a href="./home.html">Non-Fiction</a></li>
-                  <li><a href="./home.html">eBooks</a></li>
-                  <li><a href="./home.html">Audiobooks</a></li>
-                  <li><a href="./home.html">YA</a></li>
-                  <li><a href="./home.html">Kids</a></li>
-                </ul>
-            </div>
-            <div class="footer-section-links">
-              <h3>HELP CENTER</h3>
-                <ul>
-                  <li><a href="./home.html">Holiday Shipping</a></li>
-                  <li><a href="./home.html">Shipping & Return</a></li>
-                  <li><a href="./home.html">Store Pickup</a></li>
-                  <li><a href="./home.html">Order Status</a></li>
-                  <li><a href="./home.html">Gift Cards</a></li>
-                </ul>
-            </div>
-            <div class="footer-section-links">
-              <h3>STAY CONNECTED</h3>
-                <ul>
-                  <li><a href="./home.html"><i class="fab fa-twitter"></i> Twitter</a></li>
-                  <li><a href="./home.html"><i class="fab fa-instagram"></i> Instagram</a></li>
-                  <li><a href="./home.html"><i class="fab fa-discord"></i> Discord</a></li>
-                  <li><a href="./home.html"><i class="fab fa-pinterest"></i> Pinterest</a></li>
-                  <li><a href="./home.html"><i class="fab fa-tiktok"></i> TikTok</a></li>
-                </ul>
-            </div>
-            <div class="footer-section-subscribe">
-              <h3>Subscribe</h3>
-              <form>
-                <input type="email" placeholder="Your Email Here">
-                <button type="submit"> Join </button>
-              </form>
-              <p>Submit your email address to receive Luminous offers <br> & updates.
-                You can view Luminous's <a href="#">Privacy Policy</a> here. <br>Unsubscribe from our emails at any time.</p> <br>
-                <h5>Rewards</h5>
-                <p>Enroll in Rewards for <b>FREE</b>. Watch your savings add up!</p>
-                <p><a href="#">Learn More</a>   <a href="#">Sign Up Free</a></p>
-            </div>
-          </div>
-          <hr>
-          <br>
-          <div class="footer-bottom-section">
-            <p>© 2024 Luminous. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Cookie Settings</a></p>
-          </div>
-        </footer>
+        <hr>
+        <br>
+        <div class="footer-bottom-section">
+          <p>© 2024 Luminous. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Cookie Settings</a></p>
+        </div>
+      </footer>
   
   
   

@@ -28,7 +28,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES ('$title', '$author', '$price', '$discount', '$discounted_price', '$image_path')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<p>New book added successfully! <a href='home.php'>View Home</a></p>";
+        echo "<p style='
+                font-family: Arial, sans-serif; 
+                background-color: #4CAF50; 
+                color: white; 
+                padding: 10px; 
+                border-radius: 5px; 
+                text-align: center; 
+                margin: 20px auto; 
+                max-width: 400px; 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>
+                New book added successfully! 
+                <a href='home.php' style='color: #ffffff; text-decoration: underline;'>View Home</a>
+            </p>";
+
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -78,24 +91,7 @@ $conn->close();
 
     </header>
 
-    <div class="genre-container">
-    <nav class="genre-bar">
-        <ul>
-          <li><a href="#romance">Gift Cards</a></li>
-          <li><a href="#romance">Best Sellers</a></li>
-          <li><a href="#romance">New Arrivals</a></li>
-          <li><a href="#romance">Top Picks</a></li>
-          <li><a href="#romance">Free Shipping</a></li>
-          <li><a href="#non-fiction">Author Events</a></li>
-          <li><a href="#romance">YA</a></li>
-          <li><a href="#mystery">Audiobooks</a></li>
-          <li><a href="#fantasy">eBooks</a></li>
-          <li><a href="#sci-fi">Fiction</a></li>
-          <li><a href="#non-fiction">Non-Fiction</a></li>
-          <li><a href="#non-fiction">Kids</a></li>
-        </ul>
-      </nav>
-    </div>
+
     
         <div class="add-books-container">
         <form action="add_book.php" method="POST" enctype="multipart/form-data" style="margin-bottom: 20px;">
@@ -143,14 +139,15 @@ $conn->close();
                     </div>
 
 
-    <div class="community">
-      <h1 class="sentence1"> Join Our Book Lover Community</h1>
-      <p class="sentence">Stay updated with the latest releases, exclusive offers, and book recommendations tailored for you!</p>
-      <div class="buttons">
-        <button class="subscribe">Subscribe</button>
+   
+  <div class="community">
+    <h1 class="sentence1"> Join Our Book Lover Community</h1>
+    <p class="sentence">Stay updated with the latest releases, exclusive offers, and book recommendations tailored for you!</p>
+    <div class="buttons">
         <button class="learn-more">Learn More</button>
-      </div>
     </div>
+</div>
+
 
       <footer>
         <div class="footer-container">
@@ -212,11 +209,11 @@ $conn->close();
               </ul>
           </div>
           <div class="footer-section-subscribe">
-            <h3>Subscribe</h3>
-            <form>
-              <input type="email" placeholder="Your Email Here">
-              <button type="submit"> Join </button>
-            </form>
+                <h3>Subscribe</h3>
+                <form action="subscribe.php" method="POST" class="sub-form">
+                    <input type="email" name="email" placeholder="Your Email Here" required>
+                    <button type="submit" name="subscribe">Join</button>
+                </form>
             <p>Submit your email address to receive Luminous offers <br> & updates.
               You can view Luminous's <a href="#">Privacy Policy</a> here. <br>Unsubscribe from our emails at any time.</p> <br>
               <h5>Rewards</h5>

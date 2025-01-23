@@ -361,14 +361,14 @@ $result = $conn->query($sql);
                     </div>
 
 
-    <div class="community">
-      <h1 class="sentence1"> Join Our Book Lover Community</h1>
-      <p class="sentence">Stay updated with the latest releases, exclusive offers, and book recommendations tailored for you!</p>
-      <div class="buttons">
-        <button class="subscribe">Subscribe</button>
+  <div class="community">
+    <h1 class="sentence1"> Join Our Book Lover Community</h1>
+    <p class="sentence">Stay updated with the latest releases, exclusive offers, and book recommendations tailored for you!</p>
+    <div class="buttons">
         <button class="learn-more">Learn More</button>
-      </div>
     </div>
+</div>
+
 
       <footer>
         <div class="footer-container">
@@ -430,11 +430,11 @@ $result = $conn->query($sql);
               </ul>
           </div>
           <div class="footer-section-subscribe">
-            <h3>Subscribe</h3>
-            <form>
-              <input type="email" placeholder="Your Email Here">
-              <button type="submit"> Join </button>
-            </form>
+                <h3>Subscribe</h3>
+                <form action="subscribe.php" method="POST" class="sub-form">
+                    <input type="email" name="email" placeholder="Your Email Here" required>
+                    <button type="submit" name="subscribe">Join</button>
+                </form>
             <p>Submit your email address to receive Luminous offers <br> & updates.
               You can view Luminous's <a href="#">Privacy Policy</a> here. <br>Unsubscribe from our emails at any time.</p> <br>
               <h5>Rewards</h5>

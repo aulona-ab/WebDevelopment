@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-image: url(./wallpaper/25.png);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+  }
+  
+  .content {
+    max-width: 500px;
+  }
+  
+  .title {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  
+  .subtitle {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  
+  .info {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  
+  .cta-button {
+    background-color: #631810;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .decorative-image img {
+    width: 400px;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
