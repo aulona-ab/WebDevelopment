@@ -15,12 +15,12 @@
         <img src="./Logo/7-removebg-preview.png">
     </div>
     <ul>
-      <li><a href="./home.html">Home</a></li>
-      <li><a href="./contact.html">Contact</a></li>
-      <li><a href="./home.html">About Us</a></li>
-      <li><a href="./home.html">Shop</a></li>
-      <li><a href="./home.html">Blog</a></li>
-      <li><a href="./home.html">FAQs</a></li>
+      <li><a href="./home.php">Home</a></li>
+      <li><a href="./contact.php">Contact</a></li>
+      <li><a href="./home.php">About Us</a></li>
+      <li><a href="./home.php">Shop</a></li>
+      <li><a href="./home.php">Blog</a></li>
+      <li><a href="./home.php">FAQs</a></li>
 
     </ul>
     <div class="header-search">
@@ -28,9 +28,9 @@
       <i class="fas fa-search"></i>
   </div>
   <ul> 
-    <li><a href="./profile.html"><i class="fa fa-bookmark"></i></a></li>
-    <li><a href="./home.html"><i class="fas fa-shopping-cart"></i></a></li>
-    <li><a href="./LogIn.html"><i class="fas fa-user"></i></a></li>
+    <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
+    <li><a href="./home.php"><i class="fas fa-shopping-cart"></i></a></li>
+    <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
   </ul>
  
 

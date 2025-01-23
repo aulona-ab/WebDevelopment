@@ -1,3 +1,21 @@
+<?php
+// Connection with the database
+$host = 'localhost';
+$user = 'root'; 
+$password = ''; 
+$dbname = 'bookstore';
+
+$conn = new mysqli($host, $user, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch the books from the books table in database
+$sql = "SELECT * FROM books";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +33,12 @@
             <img src="./Logo/7-removebg-preview.png">
         </div>
         <ul>
-          <li><a href="./home.html">Home</a></li>
-          <li><a href="./contact.html">Contact</a></li>
-          <li><a href="./home.html">About Us</a></li>
-          <li><a href="./home.html">Shop</a></li>
-          <li><a href="./home.html">Blog</a></li>
-          <li><a href="./home.html">FAQs</a></li>
+          <li><a href="./home.php">Home</a></li>
+          <li><a href="./contact.php">Contact</a></li>
+          <li><a href="./home.php">About Us</a></li>
+          <li><a href="./home.php">Shop</a></li>
+          <li><a href="./home.php">Blog</a></li>
+          <li><a href="./home.php">Dashboard</a></li>
 
         </ul>
         <div class="header-search">
@@ -28,9 +46,9 @@
           <i class="fas fa-search"></i>
       </div>
       <ul> 
-        <li><a href="./profile.html"><i class="fa fa-bookmark"></i></a></li>
-        <li><a href="./home.html"><i class="fas fa-shopping-cart"></i></a></li>
-        <li><a href="./LogIn.html"><i class="fas fa-user"></i></a></li>
+        <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
+        <li><a href="./home.php"><i class="fas fa-shopping-cart"></i></a></li>
+        <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
       </ul>
      
 
@@ -79,144 +97,44 @@
     </div>
 
 
+    <div class="plus-container">
+    <div class="plus">
+        <a href="./add_book.php"><p>Add Book</p></a>
+    </div>
+</div>
+
     <div class="product-container">
+    <?php while ($row = $result->fetch_assoc()): ?>
         <div class="product-card">
-          <div class="product-discount">-50%</div>
-          <img src="./books/book-cover (1).png" alt="Book Cover" class="product-image" />
-          <h3 class="product-title">The Great Novel</h3>
-          <p class="author-name">J.K. Rowling</p> 
-          <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-          <button class="add-to-cart">Add to Cart</button>
-          <button class="favorite"> <i class="fa fa-bookmark"></i></button>
+            <?php if ($row['discount'] > 0): ?>
+                <div class="product-discount">-<?= $row['discount']; ?>%</div>
+            <?php endif; ?>
+            
+            <img src="<?= $row['image_path']; ?>" alt="Book Cover" class="product-image" />
+            <h3 class="product-title"><?= $row['title']; ?></h3>
+            <p class="author-name"><?= $row['author']; ?></p>
+            
+            <p class="product-price">
+                <?= number_format($row['discounted_price'], 2); ?> €
+                <?php if ($row['discount'] > 0): ?>
+                    <span class="original-price"><?= number_format($row['price'], 2); ?> €</span>
+                <?php endif; ?>
+            </p>
+            
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="favorite"><i class="fa fa-bookmark"></i></button>
+            
+            <!-- Delete Button -->
+            <form action="delete_book.php" method="POST" class="delete-form">
+                <input type="hidden" name="book_id" value="<?= $row['id']; ?>">
+                <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this book?')">
+                    Delete Book
+                </button>
+            </form>
         </div>
-        <div class="product-card">
-            <div class="product-discount">-50%</div> 
-            <img src="./books/Untitled design (1) (1) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">George Orwell</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-70%</div> 
-            <img src="./books/Untitled design (2) (1) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Jane Austen</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-60%</div> 
-            <img src="./books/Untitled design (11) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Harper Lee</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-50%</div> 
-            <img src="./books/Untitled design (7) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Mark Twain</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-30%</div> 
-            <img src="./books/Untitled design (9) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">F. Scott Fitzgerald</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-50%</div> 
-            <img src="./books/Untitled design (6) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Leo Tolstoy</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
+    <?php endwhile; ?>
+</div>
 
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-50%</div> 
-            <img src="./books/Untitled design (10).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Toni Morrison</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <img src="./books/Untitled design (4) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Juelina Rowins</p> 
-            <p class="product-price">12.99 € </p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <img src="./books/Untitled design (3) (1).png" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Stephen King</p> 
-            <p class="product-price">12.99 € </p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-50%</div> 
-            <img src="./books/15.jpg" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Margaret Atwood </p> 
-            <p class="product-price">12.99 € </p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <div class="product-discount">-50%</div> 
-            <img src="./books/16.jpg" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Sylvia Plath</p> 
-            <p class="product-price">12.99 € <span class="original-price">15.99 €</span></p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <img src="./books/17.jpg" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">John Steinbeck</p> 
-            <p class="product-price">12.99 € </p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-          <div class="product-card">
-            <img src="./books/18.jpg" alt="Book Cover" class="product-image" />
-            <h3 class="product-title">The Great Novel</h3>
-            <p class="author-name">Dostoevsky</p> 
-            <p class="product-price">12.99 €</p>
-            <button class="add-to-cart">Add to Cart</button>
-            <button class="favorite"> <i class="fa fa-bookmark"></i></button>
-          </div>
-       </div>
-
-       <div class="browse-pages">
-        <div class="browse">
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">...</a>
-          <a href="#">50</a>
-          <a href="#">&raquo;</a>
-        </div>
-       </div>
 
 
        <div class="ads-section" style="display: flex; justify-content: center; gap: 10px; padding: 0 100px;">
