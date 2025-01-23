@@ -147,6 +147,44 @@ header li a:hover {
     height: 100%; 
   }
 
+  /* THE ADD BOOK BUTTON ----------------------------------------------------------------------------------------*/
+  .plus-container {
+    background-color:  rgba(192, 192, 192, 0.212);
+  }
+
+.plus {
+    display: inline-block;
+    background: linear-gradient(135deg, #000000 0%, #fd8585 100%);
+    border-radius: 50px;
+    padding: 10px 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    margin: 85px;
+    background-color: transparent; 
+}
+
+.plus a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+}
+
+.plus:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.plus a p {
+    margin: 0;
+}
+
+.plus a:hover p {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
  
 .slide {
     flex: 0 0 100%; 

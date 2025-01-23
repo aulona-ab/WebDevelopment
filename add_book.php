@@ -1,3 +1,45 @@
+<?php
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'bookstore';
+
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = $conn->real_escape_string($_POST['title']);
+    $author = $conn->real_escape_string($_POST['author']);
+    $price = $_POST['price'];
+    $discount = isset($_POST['discount']) && $_POST['discount'] !== '' ? $_POST['discount'] : 0;
+
+    $price = floatval($price);
+    $discount = floatval($discount);
+
+    $discounted_price = $discount > 0 ? $price - ($price * $discount / 100) : $price;
+
+    $image = $_FILES['image'];
+    $image_path = 'books/' . basename($image['name']);
+    if (move_uploaded_file($image['tmp_name'], $image_path)) {
+        $sql = "INSERT INTO books (title, author, price, discount, discounted_price, image_path) 
+                VALUES ('$title', '$author', '$price', '$discount', '$discounted_price', '$image_path')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<p>New book added successfully! <a href='home.php'>View Home</a></p>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    } else {
+        echo "Failed to upload image.";
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
