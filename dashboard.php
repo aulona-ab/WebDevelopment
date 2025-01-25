@@ -1,4 +1,7 @@
 <?php
+
+session_start(); 
+
 // Database connection
 $conn = new mysqli("localhost", "root", "", "bookstore"); 
 
@@ -147,23 +150,54 @@ $subscribers_result = $conn->query($subscribers_query);
 </div>
        
 
-        <!-- Summary Section -->
-        <div class="summary">
-            <h2>Account</h2>
-            <div class="balance">
-                <h3>Your Balance</h3>
+<div class="admin-profile">
+    <h2>Admin Profile</h2>
+
+    <div class="profile-info">
+        <img src="./Authors/jk.png" alt="Admin Profile Picture" class="profile-pic">
+        <div class="admin-details">
+            <h3>Welcome, Admin <?php echo $_SESSION['username']; ?></h3>
+            <p>Role: Administrator</p>
+            <p>Email: admin@luminousbookstore.com</p>
+        </div>
+    </div>
+
+    <div class="store-performance">
+        <h3>Store Performance</h3>
+        <div class="performance-metrics">
+            <div class="metric">
+                <h4>Total Sales</h4>
                 <p>$10,632.00</p>
             </div>
-
-            <div class="activity">
-            <h3>Recent Transactions</h3>
-                <ul>
-                    <li>Sale: "The Great Adventure" - $12.99</li>
-                    <li>Sale: "Mystery Unfolded" - $9.49</li>
-                    <li>Refund: "Cooking Made Easy" - -$7.99</li>
-                </ul>
+            <div class="metric">
+                <h4>Books Sold</h4>
+                <p>1,250 books today</p>
+            </div>
+            <div class="metric">
+                <h4>Books in Stock</h4>
+                <p>1,200 books available</p>
             </div>
         </div>
+    </div>
+
+    <div class="recent-activities">
+        <h3>Recent Activities</h3>
+        <ul>
+            <li>New Order: "The Great Adventure" - $12.99</li>
+            <li>New Customer: John Doe has registered</li>
+            <li>New Book Added: "Mystery Unfolded"</li>
+        </ul>
+    </div>
+
+    <div class="admin-actions">
+        <h3>Quick Actions</h3>
+        <button class="action-btn">Add New Book</button>
+        <button class="action-btn">Manage Orders</button>
+        <button class="action-btn">View Reports</button>
+        <button class="action-btn">Manage Customers</button>
+    </div>
+</div>
+
     </div>
 
 </body>

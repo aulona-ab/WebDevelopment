@@ -199,3 +199,98 @@ table tr:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Admin Profile Styling ------------------------------------------------*/
+.admin-profile {
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    max-width: 100%; 
+    overflow: hidden; 
+    box-sizing: border-box; 
+    margin: 0 auto; 
+    overflow-x: hidden;
+    overflow-y: auto; 
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.admin-details h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.store-performance {
+    margin-bottom: 20px;
+}
+
+.performance-metrics {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap; 
+}
+
+.metric {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+    max-width: 300px; 
+    margin-bottom: 10px;
+}
+
+.recent-activities {
+    margin-bottom: 20px;
+}
+
+.recent-activities ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recent-activities li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-actions button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-actions button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .performance-metrics {
+        flex-direction: column; 
+    }
+    .admin-actions {
+        text-align: center;
+    }
+}
