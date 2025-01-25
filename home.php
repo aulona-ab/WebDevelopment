@@ -35,10 +35,10 @@ $result = $conn->query($sql);
         <ul>
           <li><a href="./home.php">Home</a></li>
           <li><a href="./contact.php">Contact</a></li>
-          <li><a href="./home.php">About Us</a></li>
+          <li><a href="./about-us.php">About Us</a></li>
           <li><a href="./home.php">Shop</a></li>
           <li><a href="./home.php">Blog</a></li>
-          <li><a href="./home.php">Dashboard</a></li>
+          <li><a href="./dashboard.php">Dashboard</a></li>
 
         </ul>
         <div class="header-search">
@@ -47,7 +47,7 @@ $result = $conn->query($sql);
       </div>
       <ul> 
         <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
-        <li><a href="./home.php"><i class="fas fa-shopping-cart"></i></a></li>
+        <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
         <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
       </ul>
      
@@ -175,7 +175,7 @@ $result = $conn->query($sql);
             <a href="#"><p>Nicola Marquee</p></a>
         </div>
         <div class="book-item">
-            <img src="./books/19.jpg" alt="Book 1">
+            <img src="./books/books/19.jpg" alt="Book 1">
             <h4>Sword</h4>
             <a href="#"><p>Olivia Wilson</p></a>
         </div>
@@ -254,7 +254,7 @@ $result = $conn->query($sql);
                 <a href="#"><p>Nicola Marquee</p></a>
             </div>
             <div class="book-item">
-                <img src="./books/19.jpg" alt="Book 1">
+                <img src="./books/books/19.jpg" alt="Book 1">
                 <h4>Sword</h4>
                 <a href="#"><p>Olivia Wilson</p></a>
             </div>

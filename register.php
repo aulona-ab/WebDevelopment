@@ -31,7 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("ssss", $username, $email, $password, $role);
 
     if ($stmt->execute()) {
-        echo "Registration successful!";
+        echo "<script>
+        window.location.href = 'successful.php';
+      </script>";
     } else {
         echo "Error: " . $stmt->error;
     }

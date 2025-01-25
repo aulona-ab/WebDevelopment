@@ -20,7 +20,7 @@
       <li><a href="./home.php">About Us</a></li>
       <li><a href="./home.php">Shop</a></li>
       <li><a href="./home.php">Blog</a></li>
-      <li><a href="./home.php">FAQs</a></li>
+      <li><a href="./dashboard.php">Dashboard</a></li>
 
     </ul>
     <div class="header-search">
@@ -29,7 +29,7 @@
   </div>
   <ul> 
     <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
-    <li><a href="./home.php"><i class="fas fa-shopping-cart"></i></a></li>
+    <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
     <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
   </ul>
  
@@ -151,7 +151,7 @@
                         <p>1984</p>
                     </div>
                     <div class="book-item">
-                        <img src="./books/19.jpg" alt="Book Cover">
+                        <img src="./books/books/19.jpg" alt="Book Cover">
                         <p>Pride and Prejudice</p>
                     </div>
                     <div class="book-item">
@@ -159,7 +159,7 @@
                         <p>Pride and Prejudice</p>
                     </div>
                     <div class="book-item">
-                        <img src="./books/18.jpg" alt="Book Cover">
+                        <img src="./books/books/18.jpg" alt="Book Cover">
                         <p>Pride and Prejudice</p>
                     </div>
                 </div>
