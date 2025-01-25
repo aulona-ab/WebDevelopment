@@ -20,6 +20,11 @@ $books_result = $conn->query($books_query);
 // Fetch Subscribers
 $subscribers_query = "SELECT email, subscription_date FROM subscribers";
 $subscribers_result = $conn->query($subscribers_query);
+
+// Fetch Messages
+$contact_query = "SELECT * FROM contact_messages";
+$contact_result = $conn->query($contact_query);
+
 ?>
 
 
@@ -146,6 +151,33 @@ $subscribers_result = $conn->query($subscribers_query);
                 </tbody>
             </table>
         </div>
+
+        <!-- Contact Form Submissions Section -->
+<div class="section">
+    <h2>Contact Form Submissions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Submitted At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($contact = $contact_result->fetch_assoc()): ?>
+            <tr>
+                <td><?= $contact['name'] ?></td>
+                <td><?= $contact['email'] ?></td>
+                <td><?= $contact['subject'] ?></td>
+                <td><?= substr($contact['message'], 0, 1000) . '...' ?></td> 
+                <td><?= $contact['submitted_at'] ?></td>
+            </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
     </div>
 </div>
        
@@ -191,8 +223,7 @@ $subscribers_result = $conn->query($subscribers_query);
 
     <div class="admin-actions">
         <h3>Quick Actions</h3>
-        <button class="action-btn">Add New Book</button>
-        <button class="action-btn">Manage Orders</button>
+        <a href="add_book.php"><button class="action-btn">Add New Book</button></a>        <button class="action-btn">Manage Orders</button>
         <button class="action-btn">View Reports</button>
         <button class="action-btn">Manage Customers</button>
     </div>

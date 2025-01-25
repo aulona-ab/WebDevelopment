@@ -75,7 +75,7 @@ $conn->close();
           <li><a href="./home.php">About Us</a></li>
           <li><a href="./home.php">Shop</a></li>
           <li><a href="./home.php">Blog</a></li>
-          <li><a href="./home.php">Dashboard</a></li>
+          <li><a href="./dashboard.php">Dashboard</a></li>
 
         </ul>
         <div class="header-search">
