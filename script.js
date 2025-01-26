@@ -21,12 +21,6 @@ function scrollHorizontally(distance) {
     const container = document.querySelector('.horizontal-scroll');
     container.style.transform = `translateX(${distance}px)`;
 }
-
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-      alert('Product added to cart!');
-    });
-  });
   
   document.querySelectorAll('.favorite').forEach(button => {
     button.addEventListener('click', () => {

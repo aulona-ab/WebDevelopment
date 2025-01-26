@@ -1,21 +1,68 @@
-<?php
+<?php 
 session_start();
+
+
 // Connection with the database
-$host = 'localhost';
-$user = 'root'; 
-$password = ''; 
-$dbname = 'bookstore';
+include 'db.php';
 
-$conn = new mysqli($host, $user, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check if the user is logged in before proceeding with book addition
+if (!isset($_SESSION['user_id'])) {
+    echo "<script>
+            alert('You need to log in to add items to your cart.');
+            window.location.href = 'login.php';
+          </script>";
+    exit();
 }
 
-// Fetch the books from the books table in database
+// Fetch books from the database (only if the user is logged in)
 $sql = "SELECT * FROM books";
 $result = $conn->query($sql);
+
+
+
+
+
+
+// Handle adding books to the cart
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = $_SESSION['user_id']; 
+    $book_id = $_POST['book_id'];
+    // Check if the book is already in the user's cart
+    $stmt = $conn->prepare("SELECT * FROM cart WHERE user_id = ? AND book_id = ?");
+    $stmt->bind_param("ii", $user_id, $book_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        // Book is already in the cart, update the quantity
+        $stmt = $conn->prepare("UPDATE cart SET quantity = quantity + 1 WHERE user_id = ? AND book_id = ?");
+        $stmt->bind_param("ii", $user_id, $book_id);
+        $stmt->execute();
+    } else {
+        // Book is not in the cart, insert a new row
+        $stmt = $conn->prepare("INSERT INTO cart (user_id, book_id) VALUES (?, ?)");
+        $stmt->bind_param("ii", $user_id, $book_id);
+        $stmt->execute();
+    }
+    $stmt->close();
+
+    echo "<p style='
+        font-family: Arial, sans-serif; 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+        text-align: center; 
+        margin: 20px auto; 
+        max-width: 400px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>
+        Book added to Cart! 
+        <a href='cart.php' style='color: #ffffff; text-decoration: underline;'>View Cart</a>
+      </p>";
+
+} 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -102,6 +149,7 @@ $result = $conn->query($sql);
       <img src="./books-ad/black-final.png" alt="4">
     </div>
 
+
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
     <div class="plus-container">
     <div class="plus">
@@ -111,6 +159,12 @@ $result = $conn->query($sql);
 <?php endif; ?>
 
 
+<?php
+// Fetch books from the database
+$sql = "SELECT * FROM books";
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0): ?>
     <div class="product-container">
     <?php while ($row = $result->fetch_assoc()): ?>
         <div class="product-card">
@@ -129,7 +183,10 @@ $result = $conn->query($sql);
                 <?php endif; ?>
             </p>
             
-            <button class="add-to-cart">Add to Cart</button>
+            <form method="POST" action="" class="add_to_cart">
+                        <input type="hidden" name="book_id" value="<?= $row['id'] ?>">
+                        <button type="submit" class="add-to-cart" >Add to Cart</button>
+                    </form>
             <button class="favorite"><i class="fa fa-bookmark"></i></button>
             
             <!-- Delete Button -->
@@ -143,7 +200,10 @@ $result = $conn->query($sql);
             <?php endif; ?>
         </div>
     <?php endwhile; ?>
-</div>
+    </div>
+<?php else: ?>
+    <p>No books available at the moment.</p>
+<?php endif; ?>
 
 
 

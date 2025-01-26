@@ -147,6 +147,227 @@ header li a:hover {
     height: 100%; 
   }
 
+  /* CART SECTION----------------------------------------------------------------------------------*/
+ /* Existing cart container styles */
+ .cart-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+  gap: 20px;
+}
+
+.cart-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-spacing: 0;
+}
+
+/* Table cell styling */
+.cart-container th, .cart-container td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-container th {
+  background-color: #f8f8f8;
+  color: #555;
+}
+
+.cart-container td {
+  background-color: #fff;
+}
+
+/* Image styling for books */
+.cart-container .cart-item-image .book-image {
+  width: 50px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Book title and price styles */
+.cart-container .cart-item-title {
+  font-size: 1rem;
+  color: #333;
+}
+
+.cart-container .cart-item-price {
+  font-size: 1.1rem;
+  color: #888;
+}
+
+/* Styling for quantity buttons */
+.cart-container .cart-item-quantity .quantity-btns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+/* Quantity display area */
+.cart-container .cart-item-quantity .quantity-btns .quantity-display {
+  width: 40px; /* Fixed width to accommodate at least two digits */
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Styling for the minus button */
+.cart-container .cart-item-quantity .quantity-btns .quantity-decrease-btn {
+  background-color: #ff6347; /* Red color */
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.cart-container .cart-item-quantity .quantity-btns .quantity-decrease-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Styling for the plus button */
+.cart-container .cart-item-quantity .quantity-btns .quantity-increase-btn {
+  background-color: #4caf50; /* Green color */
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.cart-container .cart-item-quantity .quantity-btns .quantity-increase-btn:hover {
+  background-color: #388e3c;
+}
+
+/* Styling for the remove button (for item removal) */
+.cart-container .cart-item-quantity .quantity-btns .quantity-remove-btn {
+  background-color: #9e9e9e; /* Grey color */
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.cart-container .cart-item-quantity .quantity-btns .quantity-remove-btn:hover {
+  background-color: #616161;
+}
+
+/* Subtotal price styling */
+.cart-container .cart-item-subtotal {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Remove button at the end of the cart item */
+.cart-container .cart-item-remove button.remove {
+  background-color: #9e9e9e;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  width: 100px;
+  text-align: center;
+  display: inline-block;
+}
+
+.cart-container .cart-item-remove button.remove:hover {
+  background-color: #616161;
+}
+
+.cart-container .cart-item-remove button.remove:focus {
+  outline: none;
+}
+
+/* Total section styling */
+.cart-container .total-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-container .total-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cart-container .total-section button {
+  background-color: #ff9800;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-container .total-section button:hover {
+  background-color: #f57c00;
+}
+
+/* Styling for forms inside cart */
+.cart-container form {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.cart-container form input[type="hidden"] {
+  display: none;
+}
+
+.cart-container form button {
+  padding: 8px 15px;
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.cart-container form button:hover {
+  background-color: #d32f2f;
+}
+
+.cart-container form button:focus {
+  outline: none;
+}
+
+/* Ensuring quantity buttons form doesn't disrupt layout */
+.cart-container .quantity-btns form {
+  margin: 0;
+  display: inline;
+}
+
+.cart-container .cart-item-remove form {
+  display: inline;
+  margin: 0;
+}
+
+
+
   /* THE ADD BOOK BUTTON ----------------------------------------------------------------------------------------*/
   .plus-container {
     background-color:  rgba(192, 192, 192, 0.212);
@@ -621,6 +842,16 @@ form br {
     text-decoration: line-through;
   }
   
+  .add_to_cart {
+    all: unset;
+    display: inline;
+  }
+
+  .add_to_cart * {
+    all: unset;
+  }
+  
+
   .add-to-cart {
     border: 1px solid black;
     padding: 5px 10px;
