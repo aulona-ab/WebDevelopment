@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Connection with the database
 $host = 'localhost';
 $user = 'root'; 
@@ -38,8 +39,9 @@ $result = $conn->query($sql);
           <li><a href="./about-us.php">About Us</a></li>
           <li><a href="./home.php">Shop</a></li>
           <li><a href="./home.php">Blog</a></li>
-          <li><a href="./dashboard.php">Dashboard</a></li>
-
+          <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+    <li><a href="./dashboard.php">Dashboard</a></li>
+<?php endif; ?>
         </ul>
         <div class="header-search">
           <input type="search" id="header-search" placeholder="Search books, authors, ISBNs">
@@ -48,8 +50,12 @@ $result = $conn->query($sql);
       <ul> 
         <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
         <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+        <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
+              <?php else: ?>
         <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
-      </ul>
+              <?php endif; ?>     
+ </ul>
      
 
     </header>
@@ -96,12 +102,14 @@ $result = $conn->query($sql);
       <img src="./books-ad/black-final.png" alt="4">
     </div>
 
-
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
     <div class="plus-container">
     <div class="plus">
         <a href="./add_book.php"><p>Add Book</p></a>
     </div>
 </div>
+<?php endif; ?>
+
 
     <div class="product-container">
     <?php while ($row = $result->fetch_assoc()): ?>
@@ -125,12 +133,14 @@ $result = $conn->query($sql);
             <button class="favorite"><i class="fa fa-bookmark"></i></button>
             
             <!-- Delete Button -->
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
             <form action="delete_book.php" method="POST" class="delete-form">
                 <input type="hidden" name="book_id" value="<?= $row['id']; ?>">
                 <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this book?')">
                     Delete Book
                 </button>
             </form>
+            <?php endif; ?>
         </div>
     <?php endwhile; ?>
 </div>

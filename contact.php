@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -68,8 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <li><a href="./home.php">About Us</a></li>
       <li><a href="./home.php">Shop</a></li>
       <li><a href="./home.php">Blog</a></li>
-      <li><a href="./dashboard.php">Dashboard</a></li>
-
+      <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+    <li><a href="./dashboard.php">Dashboard</a></li>
+<?php endif; ?>
     </ul>
     <div class="header-search">
       <input type="search" id="header-search" placeholder="Search books, authors, ISBNs">
@@ -78,8 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <ul> 
     <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
     <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
-    <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
-  </ul>
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
+              <?php else: ?>
+        <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
+              <?php endif; ?>    </ul>
  
 
 </header>

@@ -1,3 +1,39 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$conn = new mysqli('localhost', 'root', '', 'bookstore');
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$user_id = $_SESSION['user_id'];
+
+$sql = "SELECT username, created_at FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+
+if (!$stmt) {
+    die("Error preparing statement: " . $conn->error);
+}
+
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($username, $created_at);
+
+if ($stmt->fetch()) {
+} else {
+    echo "Error: Could not fetch user details.";
+    exit();
+}
+
+$stmt->close();
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +56,9 @@
       <li><a href="./home.php">About Us</a></li>
       <li><a href="./home.php">Shop</a></li>
       <li><a href="./home.php">Blog</a></li>
-      <li><a href="./dashboard.php">Dashboard</a></li>
-
+      <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+    <li><a href="./dashboard.php">Dashboard</a></li>
+<?php endif; ?>
     </ul>
     <div class="header-search">
       <input type="search" id="header-search" placeholder="Search books, authors, ISBNs">
@@ -30,8 +67,11 @@
   <ul> 
     <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
     <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
-    <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
-  </ul>
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
+              <?php else: ?>
+        <li><a href="./login.php"><i class="fas fa-user"></i></a></li>
+              <?php endif; ?>    </ul>
  
 
 </header>
@@ -57,7 +97,7 @@
 
 
     <div class="welcome-message">
-        <h1>Welcome back, Angelina Doe!</h1>
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
         <p>Dive into your reading journey, manage your preferences, and explore your favorite stories all in one place.</p>
     </div>
 
@@ -104,22 +144,21 @@
                     <a href="#">General Settings</a>
                     <ul class="sub-settings">
                         <li><a href="#">Language</a></li>
-                        <li><a href="#">Theme (Light/Dark)</a></li>
                         <li><a href="#">Region Settings</a></li>
                     </ul>
                 </li>
         
                 <li><a href="./contact.html">Help & Support</a></li>
         
-                <li><a href="#" class="delete">Delete Account</a></li>
-            </ul>
-        </aside>
+                <li><a href="./log_out.php">Log Out</a></li>
+                <li><a href="./delete_account.php" onclick="return confirm('Are you sure you want to delete this account? This action cannot be undone.');">Delete Account</a></li>
+                </aside>
         <section class="profile-details">
             <div class="profile-header">
                 <img src="./Logo/blank-profile-picture-973460_1280.webp" alt="Profile Picture" class="profile-pic">
                 <div class="info">
-                    <h2>Angelina Doe</h2>
-                    <p>Member Since: January 2023</p>
+                    <h2><?php echo htmlspecialchars($_SESSION['username']); ?></h2>
+                    <p>Member Since: <?php echo date("F j, Y", strtotime($created_at)); ?></p>
                     <button class="edit-profile">Edit Profile</button>
                 </div>
             </div>
@@ -147,7 +186,7 @@
                         <p>The Great Gatsby</p>
                     </div>
                     <div class="book-item">
-                        <img src="./books/17.jpg" alt="Book Cover">
+                        <img src="./books/books/17.jpg" alt="Book Cover">
                         <p>1984</p>
                     </div>
                     <div class="book-item">

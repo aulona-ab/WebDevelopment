@@ -273,7 +273,7 @@ table tr:hover {
 
 .admin-actions button {
     padding: 10px 20px;
-    margin-right: 10px;
+    margin-bottom: 6px;
     background-color: #007bff;
     color: #fff;
     border: none;
