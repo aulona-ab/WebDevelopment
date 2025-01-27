@@ -117,6 +117,31 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
+// SEARCH BAR ------------------------------------------
+function searchBooks(query) {
+  const resultsDiv = document.getElementById('search-results');
+  if (query.trim() === '') {
+      resultsDiv.style.display = 'none';
+      resultsDiv.innerHTML = '';
+      return;
+  }
+
+  fetch(`search_books.php?query=${encodeURIComponent(query)}`)
+      .then(response => response.text())
+      .then(data => {
+          resultsDiv.innerHTML = data;
+          resultsDiv.style.display = 'block';
+      })
+      .catch(err => console.error('Error:', err));
+}
+
+document.addEventListener('click', (event) => {
+  const resultsDiv = document.getElementById('search-results');
+  if (!event.target.closest('.header-search') && !event.target.closest('#search-results')) {
+      resultsDiv.style.display = 'none';
+  }
+});
+
 
    
 

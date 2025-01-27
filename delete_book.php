@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "DELETE FROM books WHERE id = $book_id";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<p>Book deleted successfully! <a href='home.php'>Go back to Home</a></p>";
-    } else {
+        header('Location: home.php');
+        } else {
         echo "Error deleting book: " . $conn->error;
     }
 }

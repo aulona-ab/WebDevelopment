@@ -69,6 +69,61 @@ header{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.fas.fa-search {
+  position: absolute;
+  right: 20px;
+
+}
+
+#search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#search-results div {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+#search-results div:hover {
+  background-color: #f0f0f0;
+}
+
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 10;
+}
+
+.search-results div {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-results div:hover {
+  background-color: #f7f7f7;
+}
+
+
 
 .logo {
   display: flex;
@@ -273,12 +328,6 @@ header li a:hover {
 
 
   /* CART SECTION----------------------------------------------------------------------------------*/
- .cart-wall {
-  background-image: url(./wallpaper/lule.jpg);
-  background-size: cover;
-  max-width: 1000px;
-
- }
   /* Existing cart container styles */
  .cart-container {
   max-width: 1000px;

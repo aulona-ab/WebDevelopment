@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><strong>Genre:</strong> <?= $book['genre']; ?></p>
             <p><strong>Summary:</strong> <?= $book['summary']; ?></p>
             <div class="price-details">
-                <p><strong>Discounted Price:</strong> <span class="discount_price"> <?= number_format($book['discounted_price'], 2); ?> € </span></p>
+                <p><strong>Price:</strong> <span class="discount_price"> <?= number_format($book['discounted_price'], 2); ?> € </span></p>
                 <?php if ($book['discount'] > 0): ?>
                     <p><strong>Original Price:</strong> <span class="original_price"><?= number_format($book['price'], 2); ?> €</span></p>
                 <?php endif; ?>

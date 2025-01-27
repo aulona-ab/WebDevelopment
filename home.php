@@ -87,9 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
         </ul>
         <div class="header-search">
-          <input type="search" id="header-search" placeholder="Search books, authors, ISBNs">
-          <i class="fas fa-search"></i>
-      </div>
+        <input type="search" id="header-search" placeholder="Search books, authors, ISBNs" oninput="searchBooks(this.value)">
+        <i class="fas fa-search"></i>
+        <div id="search-results" class="search-results"></div>
+    </div>
+
       <ul> 
         <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
         <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
@@ -169,11 +171,10 @@ if ($result && $result->num_rows > 0): ?>
             <?php endif; ?>
             
             <!-- Book cover  -->
-             <div class="title-style" style="text-decoration: none;">
             <a href="book_details.php?book_id=<?= $row['id']; ?>">
             <img src="<?= $row['image_path']; ?>" alt="Book Cover" class="product-image" />
             <h3 class="product-title"><?= $row['title']; ?></h3>
-            </a> </div>
+            </a> 
             <p class="author-name"><?= $row['author']; ?></p>
             
             <!-- Discount -->
