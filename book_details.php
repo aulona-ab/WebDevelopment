@@ -1,61 +1,65 @@
 <?php
+
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    echo "<script>
-            alert('You need to log in to view your cart.');
-            window.location.href = 'login.php';
-          </script>";
-    exit();
+include 'db.php'; 
+
+if (isset($_GET['book_id'])) {
+    $book_id = $_GET['book_id'];
+
+    // Fetch book details from the database
+    $stmt = $conn->prepare("SELECT * FROM books WHERE id = ?");
+    $stmt->bind_param("i", $book_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $book = $result->fetch_assoc();
+
+    if (!$book) {
+        echo "Book not found.";
+        exit;
+    }
+} else {
+    echo "No book ID provided.";
+    exit;
 }
 
-$user_id = $_SESSION['user_id'];
-
-// Database connection
-$conn = new mysqli('localhost', 'root', '', 'bookstore');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch the cart items for the logged-in user
-$stmt = $conn->prepare("
-    SELECT cart.id, books.title, books.discount, books.price, books.discounted_price, books.image_path, cart.quantity 
-    FROM cart 
-    JOIN books ON cart.book_id = books.id 
-    WHERE cart.user_id = ?
-");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$total_price = 0;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-    $cart_id = $_POST['cart_id'];
-    $action = $_POST['action'];
-
-    if ($action === 'decrease') {
-        // Decrease the quantity
-        $stmt = $conn->prepare("UPDATE cart SET quantity = quantity - 1 WHERE id = ? AND quantity > 1");
-        $stmt->bind_param("i", $cart_id);
+// Handle adding books to the cart
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = $_SESSION['user_id']; 
+    $book_id = $_POST['book_id'];
+    // Check if the book is already in the user's cart
+    $stmt = $conn->prepare("SELECT * FROM cart WHERE user_id = ? AND book_id = ?");
+    $stmt->bind_param("ii", $user_id, $book_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        // Book is already in the cart, update the quantity
+        $stmt = $conn->prepare("UPDATE cart SET quantity = quantity + 1 WHERE user_id = ? AND book_id = ?");
+        $stmt->bind_param("ii", $user_id, $book_id);
         $stmt->execute();
-    } elseif ($action === 'increase') {
-        // Increase the quantity
-        $stmt = $conn->prepare("UPDATE cart SET quantity = quantity + 1 WHERE id = ?");
-        $stmt->bind_param("i", $cart_id);
-        $stmt->execute();
-    } elseif ($action === 'remove') {
-        // Remove the book from the cart
-        $stmt = $conn->prepare("DELETE FROM cart WHERE id = ?");
-        $stmt->bind_param("i", $cart_id);
+    } else {
+        // Book is not in the cart, insert a new row
+        $stmt = $conn->prepare("INSERT INTO cart (user_id, book_id) VALUES (?, ?)");
+        $stmt->bind_param("ii", $user_id, $book_id);
         $stmt->execute();
     }
+    $stmt->close();
 
-    header("Location: cart.php"); 
-    exit();
-}
+    echo "<p style='
+        font-family: Arial, sans-serif; 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+        text-align: center; 
+        margin: 20px auto; 
+        max-width: 400px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>
+        Book added to Cart! 
+        <a href='cart.php' style='color: #ffffff; text-decoration: underline;'>View Cart</a>
+      </p>";
 
+} 
 ?>
 
 <!DOCTYPE html>
@@ -124,99 +128,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 
     <br>
     <br>
-    
-    <h1 style="text-align: center; font-size: 27px; color: #333;">Your Cart</h1>
-    <div class="cart-container">
-        <?php if ($result->num_rows > 0): ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Discounted Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-    <?php while ($row = $result->fetch_assoc()): ?>
-        <?php
-        // Get the original price (for display) and the discounted price (for subtotal)
-        $original_price = $row['price'];
-        $discounted_price = $row['discounted_price'] ? $row['discounted_price'] : $original_price;
-        $subtotal = $discounted_price * $row['quantity'];
-        $total_price += $subtotal;
-        ?>
-        <tr class="cart-item">
-            <td class="cart-item-image">
-                <img src="<?= htmlspecialchars($row['image_path']) ?>" alt="Book Image" class="book-image">
-            </td>
-            <td class="cart-item-title"><?= htmlspecialchars($row['title']) ?></td>
-            <td class="cart-item-price">€<?= number_format($original_price, 2) ?></td> <!-- Display original price -->
-            <td class="cart-item-quantity">
-                <div class="quantity-btns">
-                    <form method="POST" action="cart.php" class="quantity-form">
-                        <input type="hidden" name="cart_id" value="<?= $row['id'] ?>">
-                        <input type="hidden" name="action" value="decrease">
-                        <button type="submit" name="update" value="decrease" class="quantity-decrease-btn">-</button>
-                    </form>
-                    <span class="quantity-value"><?= $row['quantity'] ?></span>
-                    <form method="POST" action="cart.php" class="quantity-form">
-                        <input type="hidden" name="cart_id" value="<?= $row['id'] ?>">
-                        <input type="hidden" name="action" value="increase">
-                        <button type="submit" name="update" value="increase" class="quantity-increase-btn">+</button>
-                    </form>
-                </div>
-            </td>
-            <td class="cart-item-subtotal">€<?= number_format($subtotal, 2) ?></td> <!-- Subtotal is calculated using discounted price -->
-            <td class="cart-item-remove">
-                <form method="POST" action="cart.php" class="remove-form">
-                    <input type="hidden" name="cart_id" value="<?= $row['id'] ?>">
-                    <input type="hidden" name="action" value="remove">
-                    <button type="submit" name="update" value="remove" class="remove-btn">Remove</button>
-                </form>
-            </td>
-        </tr>
-    <?php endwhile; ?>
-</tbody>
-            </table>
-            <div class="total-section">
-                <h2>Total Price: €<?= number_format($total_price, 2) ?></h2>
-                <button onclick="alert('Purchase functionality not implemented yet!')">Proceed to Purchase</button>
+    <div class="card-background">
+    <div class="book-details-container">
+        <!-- Book Image -->
+        <div class="book-image">
+            <img src="<?= $book['image_path']; ?>" alt="<?= $book['title']; ?>" />
+        </div>
+        
+
+        <!-- Book Info -->
+        <div class="book-info">
+            <h1><?= $book['title']; ?></h1>
+            <p><strong>Author:</strong> <?= $book['author']; ?></p>
+            <p><strong>ISBN:</strong> <?= $book['isbn']; ?></p>
+            <p><strong>Genre:</strong> <?= $book['genre']; ?></p>
+            <p><strong>Summary:</strong> <?= $book['summary']; ?></p>
+            <div class="price-details">
+                <p><strong>Discounted Price:</strong> <span class="discount_price"> <?= number_format($book['discounted_price'], 2); ?> € </span></p>
+                <?php if ($book['discount'] > 0): ?>
+                    <p><strong>Original Price:</strong> <span class="original_price"><?= number_format($book['price'], 2); ?> €</span></p>
+                <?php endif; ?>
             </div>
-        <?php else: ?>
-            <p>Your cart is empty.</p>
-        <?php endif; ?>
+
+
+            <!-- Buttons -->
+            <div class="details-buttons">
+                <form method="POST" action="" class="details-add_to_cart">
+                    <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
+                    <button type="submit" class="details-add-to-cart">Add to Cart</button>
+                </form>
+                <form method="POST" action="purchase.php" class="purchase-book">
+                    <input type="hidden" name="book_id" value="<?= $book['id']; ?>">
+                    <button type="submit" class="purchase-button">Purchase</button>
+                </form>
+            </div>
+
+        </div>
     </div>
-    
+    </div>
 
     <br>
     <br>
 
     <div class="line">
-        <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>
-          Over 5 million books ready to ship, 3.6 million eBooks and 300,000 audiobooks to download right now! Curbside pickup available in most stores!</p>
-        <hr>
-        </div>
+                    <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>
+                      Over 5 million books ready to ship, 3.6 million eBooks and 300,000 audiobooks to download right now! Curbside pickup available in most stores!</p>
+                    <hr>
+                   </div>
 
-        <div class="another-part">
-        <div class="about-us-small-part">
-          <h2>Get to Know Luminous Online</h2>
-        </div>
-        </div>
+                   <div class="another-part">
+                    <div class="about-us-small-part">
+                      <h2>Get to Know Luminous Online</h2>
+                    </div>
+                   </div>
 
-        <div class="extra-part">
-        <div class="about-us-extra-part">
-          <h4>Buy Books Online at Luminous.com, America’s Favorite Bookstore</h4>
-          <p>No matter what you’re a fan of, from <a href="#">Fiction</a> to<a href="#"> Biography</a>, <a href="">Sci-Fi</a>, <a href="">Mystery</a>, <a href="">YA</a>, <a href="">Manga</a>, and more, 
-            LUMINOUS has the perfect book for you. Shop bestselling books from the <a href="#">NY Times Bestsellers list</a>, 
-            or get personalized recommendations to find something new and unique! Discover <a href="">kids books</a> for children of all ages 
-            including classics like <a href="#">Dr. Seuss</a> to modern favorites like the <a href="#">Dog Man series</a>.</p>
-            <button><a href="#">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
-            </button>
-          </div>
-        </div>
+                    <div class="extra-part">
+                    <div class="about-us-extra-part">
+                      <h4>Buy Books Online at Luminous.com, America’s Favorite Bookstore</h4>
+                      <p>No matter what you’re a fan of, from <a href="#">Fiction</a> to<a href="#"> Biography</a>, <a href="">Sci-Fi</a>, <a href="">Mystery</a>, <a href="">YA</a>, <a href="">Manga</a>, and more, 
+                        LUMINOUS has the perfect book for you. Shop bestselling books from the <a href="#">NY Times Bestsellers list</a>, 
+                        or get personalized recommendations to find something new and unique! Discover <a href="">kids books</a> for children of all ages 
+                        including classics like <a href="#">Dr. Seuss</a> to modern favorites like the <a href="#">Dog Man series</a>.</p>
+                        <button><a href="#">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
+                        </button>
+                      </div>
+                    </div>
 
 
   <div class="community">

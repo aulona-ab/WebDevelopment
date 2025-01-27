@@ -48,7 +48,7 @@ body {
 
 .sidebar a:hover {
     border: 1px solid rgb(59, 11, 11);
-    color: #270404;
+    color: #441919;
 }
 
 .content {
@@ -74,7 +74,7 @@ body {
     padding: 20px 30px;
     border-radius: 15px;
     text-align: center;
-    color: rgb(163, 161, 35);
+    color: rgb(13, 82, 70);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -202,8 +202,10 @@ table tr:hover {
 /* Admin Profile Styling ------------------------------------------------*/
 .admin-profile {
     padding: 20px;
-    background-color: #f4f4f9;
-    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 50px 30px 0 rgba(0, 0, 0, 0.1);
+    color: rgb(53, 6, 6);
+    border-radius: 0 70px;
     max-width: 100%; 
     overflow: hidden; 
     box-sizing: border-box; 
@@ -244,7 +246,6 @@ table tr:hover {
 }
 
 .metric {
-    background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -264,17 +265,21 @@ table tr:hover {
 }
 
 .recent-activities li {
-    background-color: #fff;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.295);
+
+}
+
+.recent-activities li:hover {
+    background-color: #25697e13;
 }
 
 .admin-actions button {
     padding: 10px 20px;
     margin-bottom: 6px;
-    background-color: #007bff;
+    background-color: #792b2b;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -283,7 +288,7 @@ table tr:hover {
 }
 
 .admin-actions button:hover {
-    background-color: #0056b3;
+    background-color: #792b2b65;
 }
 
 @media (max-width: 768px) {

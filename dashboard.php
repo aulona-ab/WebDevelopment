@@ -25,6 +25,7 @@ $subscribers_result = $conn->query($subscribers_query);
 $contact_query = "SELECT * FROM contact_messages";
 $contact_result = $conn->query($contact_query);
 
+
 ?>
 
 
@@ -183,32 +184,13 @@ $contact_result = $conn->query($contact_query);
        
 
 <div class="admin-profile">
-    <h2>Admin Profile</h2>
-
+  <br>
+  <br>
     <div class="profile-info">
-        <img src="./Authors/jk.png" alt="Admin Profile Picture" class="profile-pic">
+        <img src="./Logo/Female-avatar-2.png" alt="Admin Profile Picture" class="profile-pic">
         <div class="admin-details">
             <h3>Welcome, Admin <?php echo $_SESSION['username']; ?></h3>
-            <p>Role: Administrator</p>
             <p>Email: admin@luminousbookstore.com</p>
-        </div>
-    </div>
-
-    <div class="store-performance">
-        <h3>Store Performance</h3>
-        <div class="performance-metrics">
-            <div class="metric">
-                <h4>Total Sales</h4>
-                <p>$10,632.00</p>
-            </div>
-            <div class="metric">
-                <h4>Books Sold</h4>
-                <p>1,250 books today</p>
-            </div>
-            <div class="metric">
-                <h4>Books in Stock</h4>
-                <p>1,200 books available</p>
-            </div>
         </div>
     </div>
 
@@ -223,7 +205,9 @@ $contact_result = $conn->query($contact_query);
 
     <div class="admin-actions">
         <h3>Quick Actions</h3>
-        <a href="add_book.php"><button class="action-btn">Add New Book</button></a>        <button class="action-btn">Manage Orders</button>
+        <br>
+        <a href="add_book.php"><button class="action-btn">Add New Book</button></a>   
+        <br>     
         <button class="action-btn">View Reports</button>
         <button class="action-btn">Manage Customers</button>
     </div>

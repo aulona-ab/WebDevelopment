@@ -20,10 +20,6 @@ $sql = "SELECT * FROM books";
 $result = $conn->query($sql);
 
 
-
-
-
-
 // Handle adding books to the cart
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id']; 
@@ -172,10 +168,15 @@ if ($result && $result->num_rows > 0): ?>
                 <div class="product-discount">-<?= $row['discount']; ?>%</div>
             <?php endif; ?>
             
+            <!-- Book cover  -->
+             <div class="title-style" style="text-decoration: none;">
+            <a href="book_details.php?book_id=<?= $row['id']; ?>">
             <img src="<?= $row['image_path']; ?>" alt="Book Cover" class="product-image" />
             <h3 class="product-title"><?= $row['title']; ?></h3>
+            </a> </div>
             <p class="author-name"><?= $row['author']; ?></p>
             
+            <!-- Discount -->
             <p class="product-price">
                 <?= number_format($row['discounted_price'], 2); ?> €
                 <?php if ($row['discount'] > 0): ?>
@@ -183,10 +184,13 @@ if ($result && $result->num_rows > 0): ?>
                 <?php endif; ?>
             </p>
             
+            <!-- Add to cart Button -->
             <form method="POST" action="" class="add_to_cart">
                         <input type="hidden" name="book_id" value="<?= $row['id'] ?>">
                         <button type="submit" class="add-to-cart" >Add to Cart</button>
                     </form>
+
+
             <button class="favorite"><i class="fa fa-bookmark"></i></button>
             
             <!-- Delete Button -->
@@ -201,8 +205,6 @@ if ($result && $result->num_rows > 0): ?>
         </div>
     <?php endwhile; ?>
     </div>
-<?php else: ?>
-    <p>No books available at the moment.</p>
 <?php endif; ?>
 
 

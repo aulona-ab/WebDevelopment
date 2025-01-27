@@ -1,4 +1,5 @@
 <?php
+
 $host = 'localhost';
 $username = 'root';
 $password = '';
@@ -13,6 +14,9 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $conn->real_escape_string($_POST['title']);
     $author = $conn->real_escape_string($_POST['author']);
+    $genre = $conn->real_escape_string($_POST['genre']);
+    $isbn = $conn->real_escape_string($_POST['isbn']);
+    $summary = $conn->real_escape_string($_POST['summary']);
     $price = $_POST['price'];
     $discount = isset($_POST['discount']) && $_POST['discount'] !== '' ? $_POST['discount'] : 0;
 
@@ -24,8 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image = $_FILES['image'];
     $image_path = 'books/' . basename($image['name']);
     if (move_uploaded_file($image['tmp_name'], $image_path)) {
-        $sql = "INSERT INTO books (title, author, price, discount, discounted_price, image_path) 
-                VALUES ('$title', '$author', '$price', '$discount', '$discounted_price', '$image_path')";
+      
+        $sql = "INSERT INTO books (title, author, summary, isbn, genre, price, discount, discounted_price, image_path) 
+                VALUES ('$title', '$author', '$summary', '$isbn', '$genre', '$price', '$discount', '$discounted_price', '$image_path')";
 
         if ($conn->query($sql) === TRUE) {
         echo "<p style='
@@ -100,6 +105,15 @@ $conn->close();
 
             <label for="author">Author Name:</label>
             <input type="text" id="author" name="author" required><br><br>
+
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" required><br><br>
+
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" required><br><br>
+
+            <label for="summary">Summary:</label>
+            <textarea id="summary" name="summary" rows="5" cols="57" placeholder="Enter a brief summary of the book" required></textarea><br><br>
 
             <label for="price">Original Price (€):</label>
             <input type="number" step="0.01" id="price" name="price" required><br><br>
