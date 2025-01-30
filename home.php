@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <div class="ads-section">
-      <img src="./books-ad/black-final.png" alt="4">
+      <img src="./Posters/poster-poster.jpg" alt="4">
     </div>
 
 
@@ -172,7 +172,7 @@ if ($result && $result->num_rows > 0): ?>
             
             <!-- Book cover  -->
             <a href="book_details.php?book_id=<?= $row['id']; ?>">
-            <img src="<?= $row['image_path']; ?>" alt="Book Cover" class="product-image" />
+            <img src="<?= $row['image_path']; ?>?v=<?= time(); ?>" alt="Book Cover" class="product-image" />
             <h3 class="product-title"><?= $row['title']; ?></h3>
             </a> 
             <p class="author-name"><?= $row['author']; ?></p>
@@ -222,155 +222,7 @@ if ($result && $result->num_rows > 0): ?>
       </div>
 
 
-       <div class="news-section">
-        <h2 class="news-title">Bestsellers</h2>
-    <div class="scroll-container">
-        <button class="scroll-left">‹</button>
-        <section class="horizontal-scroll">
-          <div class="book-item">
-            <img src="./books/Untitled design (4) (1).png" alt="Book 1">
-            <h4>Journal</h4>
-            <a href="#"><p>Violia Sams</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (13).png" alt="Book 1">
-            <h4>The young <br>  Wizard</h4>
-            <a href="#"><p>Aaron Loer</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (9) (1).png" alt="Book 1">
-            <h4>Prayer Journal</h4>
-            <a href="#"><p>Ahmed Mondo</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (12) (1).png" alt="Book 1">
-            <h4>Explore The World</h4>
-            <a href="#"><p>Nicola Marquee</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/books/19.jpg" alt="Book 1">
-            <h4>Sword</h4>
-            <a href="#"><p>Olivia Wilson</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/book-cover (1).png" alt="Book 1">
-            <h4>Cloud Prayer</h4>
-            <a href="#"><p>Simon Morriuson</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (6) (1).png" alt="Book 1">
-            <h4>Abandoned <br> Kingdom</h4>
-            <a href="#"><p>Violia Sams</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/20.jpg" alt="Book 1">
-            <h4>Conquest of Flames</h4>
-            <a href="#"><p>Shawn Garcia</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (2) (1) (1).png" alt="Book 1">
-            <h4>The mirror of Destiny</h4>
-            <a href="#"><p>Mindo Siko</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (5) (1).png" alt="Book 1">
-            <h4>My Story</h4>
-            <a href="#"><p>Mira Sams</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (8) (1).png" alt="Book 1">
-            <h4>In your Eyes</h4>
-            <a href="#"><p>Ziko Garcia</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (3) (1).png" alt="Book 1">
-            <h4>Love Brings you <br> Home</h4>
-            <a href="#"><p>Violia Sams</p></a>
-        </div>
-        <div class="book-item">
-            <img src="./books/Untitled design (7) (1).png" alt="Book 1">
-            <h4>The Whispering <br> Throne</h4>
-            <a href="#"><p>Monica Sams</p></a>
-        </div>
-        </section>
-        <button class="scroll-right">›</button>
-    </div>
-</div>
-          <div class="news-section">
-            <h2 class="news-title">Latest Releases in Fiction</h2>
-          <div class="scroll-container">
-            <button class="scroll-left">‹</button>
-            <section class="horizontal-scroll">
-              <div class="book-item">
-                <img src="./books/Untitled design (7) (1).png" alt="Book 1">
-                <h4>The Whispering <br> Throne</h4>
-                <a href="#"><p>Monica Sams</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (6) (1).png" alt="Book 1">
-                <h4>Abandoned <br> Kingdom</h4>
-                <a href="#"><p>Violia Sams</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (8) (1).png" alt="Book 1">
-                <h4>In your Eyes</h4>
-                <a href="#"><p>Ziko Garcia</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (9) (1).png" alt="Book 1">
-                <h4>Prayer Journal</h4>
-                <a href="#"><p>Ahmed Mondo</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (12) (1).png" alt="Book 1">
-                <h4>Explore The World</h4>
-                <a href="#"><p>Nicola Marquee</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/books/19.jpg" alt="Book 1">
-                <h4>Sword</h4>
-                <a href="#"><p>Olivia Wilson</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/20.jpg" alt="Book 1">
-                <h4>Conquest of Flames</h4>
-                <a href="#"><p>Shawn Garcia</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/book-cover (1).png" alt="Book 1">
-                <h4>Cloud Prayer</h4>
-                <a href="#"><p>Simon Morriuson</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (4) (1).png" alt="Book 1">
-                <h4>Journal</h4>
-                <a href="#"><p>Violia Sams</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (2) (1) (1).png" alt="Book 1">
-                <h4>The mirror of <br> Destiny</h4>
-                <a href="#"><p>Mindo Siko</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (5) (1).png" alt="Book 1">
-                <h4>My Story</h4>
-                <a href="#"><p>Mira Sams</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (3) (1).png" alt="Book 1">
-                <h4>Love Brings you <br> Home</h4>
-                <a href="#"><p>Violia Sams</p></a>
-            </div>
-            <div class="book-item">
-                <img src="./books/Untitled design (13).png" alt="Book 1">
-                <h4>The young  <br> Wizard</h4>
-                <a href="#"><p>Aaron Loer</p></a>
-            </div>
-            </section>
-            <button class="scroll-right">›</button>
-          </div>
-          </div>
-
+       
           <div class="ads-section1">
             <img src="./books-ad/MedicalWeb.jpg" alt="4">
           </div>

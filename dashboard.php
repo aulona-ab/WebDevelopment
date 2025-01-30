@@ -38,7 +38,6 @@ $contact_result = $conn->query($contact_query);
     <link rel="stylesheet" href="dboard.css">
 </head>
 <body>
-<body>
     <div class="dashboard">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -53,7 +52,7 @@ $contact_result = $conn->query($contact_query);
             <br>
             <a href="./home.php">Home</a>
             <a href="#users">Users</a>
-            <a href="#books">Books</a>
+            <a href="">Books</a>
             <a href="#subscribers">Subscribers</a>
             <br>
             <div class="logo">
@@ -99,6 +98,7 @@ $contact_result = $conn->query($contact_query);
                         <td><?= $user['email'] ?></td>
                         <td><?= $user['role'] ?></td>
                         <td><?= $user['created_at'] ?></td>
+                        <td><a href="edit_user.php?id=<?= $user['username']; ?>" style=" text-decoration: none; color: green;">Edit</a></td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -126,6 +126,7 @@ $contact_result = $conn->query($contact_query);
                         <td><?= $book['price'] ?></td>
                         <td><?= $book['discount'] ?>%</td>
                         <td><?= $book['discounted_price'] ?></td>
+                        <td><a href="edit_book.php?id=<?= $book['title']; ?>" style=" text-decoration: none; color: green;">Edit</a></td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>
