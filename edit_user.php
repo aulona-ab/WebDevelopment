@@ -13,8 +13,10 @@ if (isset($_GET['id'])) {
 if (isset($_POST['update'])) {
     $email = $_POST['email'];
     $role = $_POST['role'];
+    $update_reason = $_POST['update_reason'];
+    $updated_by = $_SESSION['username'];
 
-    $updateQuery = "UPDATE users SET email='$email', role='$role' WHERE username='$username'";
+    $updateQuery = "UPDATE users SET email='$email', role='$role', updated_by='$updated_by', update_reason='$update_reason' WHERE username='$username'";
     if (mysqli_query($conn, $updateQuery)) {
         echo "User updated successfully!";
         header("Location: dashboard.php");
@@ -68,6 +70,9 @@ if (isset($_POST['update'])) {
             <label>Role:</label>
             <input type="text" name="role" value="<?= $user['role']; ?>" required>
             
+            <label>Update Reason:</label>
+            <textarea name="update_reason" required></textarea>
+
             <button type="submit" name="update">Update User</button>
         </form>
     </div>

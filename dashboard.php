@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch Users
-$users_query = "SELECT username, email, role, created_at FROM users";
+$users_query = "SELECT username, email, role, created_at, updated_by, update_reason FROM users";
 $users_result = $conn->query($users_query);
 
 // Fetch Books
@@ -89,6 +89,8 @@ $contact_result = $conn->query($contact_query);
                         <th>Email</th>
                         <th>Role</th>
                         <th>Created At</th>
+                        <th>Updated by</th>
+                        <th>Reason</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +100,8 @@ $contact_result = $conn->query($contact_query);
                         <td><?= $user['email'] ?></td>
                         <td><?= $user['role'] ?></td>
                         <td><?= $user['created_at'] ?></td>
+                        <td><?= $user['updated_by'] ?></td>
+                        <td><?= $user['update_reason'] ?></td>
                         <td><a href="edit_user.php?id=<?= $user['username']; ?>" style=" text-decoration: none; color: green;">Edit</a></td>
                     </tr>
                     <?php endwhile; ?>

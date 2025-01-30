@@ -10,8 +10,12 @@ $sql = "SELECT * FROM books";
 $result = $conn->query($sql);
 
 // Fetch ads for the slider
-$query = "SELECT * FROM ads_slider";
-$result = mysqli_query($conn, $query);
+$query1 = "SELECT * FROM ads_slider";
+$result1 = mysqli_query($conn, $query1);
+
+// Fetch only 2 ads
+$query2 = "SELECT title, image_url FROM ads LIMIT 3"; 
+$result2 = $conn->query($query2);
 
 
 // Handle adding books to the cart
@@ -120,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <div class="carousel-container">
    <div class="carousel">
-      <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+      <?php while ($row = mysqli_fetch_assoc($result1)) : ?>
          <div class="slide">
             <?php if ($row['link']) : ?>
                <a href="<?= $row['link']; ?>"><img src="<?= $row['image_path']; ?>" alt="ADS"></a>
@@ -202,57 +206,32 @@ if ($result && $result->num_rows > 0): ?>
 <?php endif; ?>
 
 
+      <div class="ads-section">
+            <img src="./Posters/main-main.jpg" alt="4">
+          </div>
 
-       <div class="ads-section" style="display: flex; justify-content: center; gap: 10px; padding: 0 100px;">
-        <div class="first-ad">
-        <h2>Fiction Books</h2>
-        <img src="./books-ad/nonfictionbooksWeb.jpg" alt="4" style="width: 100%; height: 90%;">
-        </div>
-        <div class="second-ad">
-        <h2>Manga Mania Best Seller</h2>
-        <img src="./books-ad/4_mangamaniaWeb.jpg" alt="4" style="width: 100%; height: 90%;">
-        </div>
+            <!-- ADS SECTION ------------------------------------------------------------>
+
+        <div class="ads-section" style="display: flex; justify-content: center; gap: 10px; padding: 0 100px;">
+          <?php while ($row = $result2->fetch_assoc()) : ?>
+              <div class="ad">
+                  <h2><?= htmlspecialchars($row['title']) ?></h2>
+                  <img src="<?= htmlspecialchars($row['image_url']) ?>" alt="<?= htmlspecialchars($row['title']) ?>" style="width: 100%; height: 90%;">
+              </div>
+          <?php endwhile; ?>
       </div>
+
+      <div class="ads-section">
+            <img src="./Posters/poster-main.jpg" alt="4">
+          </div>
 
 
        
-          <div class="ads-section1">
-            <img src="./books-ad/MedicalWeb.jpg" alt="4">
-          </div>
-
-      <div class="membership-button">
-        <button class="member">Get your Membership Now!</button>
-       </div>
+        
           
 
 
-          <h2 class="texto">Meet the Authors Behind the Masterpieces!</h2>
-          <div class="books">
-            <div class="book-collection1">
-              <div class="text"> 
-                <img src="./Authors/8cigckin175jtpsk3gs361r4ss.jpg" alt="">
-                <h3>J.K. Rowling</h3>
-                <p class="texti">Known for creating the magical Harry Potter series, Rowling’s work has touched readers of all ages, transforming the fantasy genre forever.</p>
-                   <button class="LM">Learn More > </button>
-                  </div>
-                 </div>
-              <div class="book-collection1">
-              <div class="text"> 
-                <img src="./Authors/2400x2400-Paulo-Coelho.png" alt="">
-                <h3>Paulo Coelho</h3>
-                <p class="texti">The master of suspense and horror, King has written over 60 novels, including iconic works like The Shining and IT, cementing his place in literary history.</p>
-                  <button class="LM">Learn More > </button>
-                     </div>
-                    </div>
-                <div class="book-collection1">
-                  <div class="text"> 
-                    <img src="./Authors/janeausten.webp" alt="">
-                    <h3>Jane Austen </h3>
-                    <p class="texti">A literary icon, Austen’s novels, including Pride and Prejudice and Sense and Sensibility, continue to influence modern romance stories.</p>
-                      <button class="LM">Learn More ></button>
-                         </div>
-                      </div>
-                   </div>
+        
         
                    <div class="line">
                     <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>
