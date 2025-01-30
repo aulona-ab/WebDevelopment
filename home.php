@@ -5,19 +5,13 @@ session_start();
 // Connection with the database
 include 'db.php';
 
-
-// Check if the user is logged in before proceeding with book addition
-if (!isset($_SESSION['user_id'])) {
-    echo "<script>
-            alert('You need to log in to add items to your cart.');
-            window.location.href = 'login.php';
-          </script>";
-    exit();
-}
-
 // Fetch books from the database (only if the user is logged in)
 $sql = "SELECT * FROM books";
 $result = $conn->query($sql);
+
+// Fetch ads for the slider
+$query = "SELECT * FROM ads_slider";
+$result = mysqli_query($conn, $query);
 
 
 // Handle adding books to the cart
@@ -125,21 +119,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     
     <div class="carousel-container">
-      <div class="carousel">
-        <div class="slide">
-          <a href="./home.html"><img src="./wallpaper/Browse, Buy & Binge-final-FINAL.png" alt="ADS"></a>
-          <div class="caption"><a href="./home.html">Download App!</a></div>
-        </div>
-        <div class="slide">
-          <img src="./Posters/new-arrivals-final.jpg" alt="">
-        </div>
-        <div class="slide">
-          <img src="./Posters/Browse, Buy & Binge.jpg" alt="">
-        </div>
-      </div>
-      <button class="prev">&lt;</button>
-      <button class="next">&gt;</button>
-    </div>  
+   <div class="carousel">
+      <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+         <div class="slide">
+            <?php if ($row['link']) : ?>
+               <a href="<?= $row['link']; ?>"><img src="<?= $row['image_path']; ?>" alt="ADS"></a>
+            <?php else : ?>
+               <img src="<?= $row['image_path']; ?>" alt="ADS">
+            <?php endif; ?>
+         </div>
+      <?php endwhile; ?>
+   </div>
+   <button class="prev">&lt;</button>
+   <button class="next">&gt;</button>
+</div> 
 
 
 
