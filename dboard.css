@@ -330,3 +330,46 @@ table tr:hover {
     background: #044e1c;
 }
 
+/* USER UPDATE SETTINGS ---------------------------------*/
+
+.edit-user-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-user-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-user-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.edit-user-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-user-form button {
+    padding: 10px;
+    background-color: #380808;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-user-form button:hover {
+    background-color: #0b5326;
+}
+
+
