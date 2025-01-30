@@ -47,9 +47,9 @@ if (isset($_POST['update'])) {
             <br>
             <br>
             <a href="./home.php">Home</a>
-            <a href="#users">Users</a>
-            <a href="#books">Books</a>
-            <a href="#subscribers">Subscribers</a>
+            <a href="./profile.php">Profile</a>
+            <a href="./cart.php">Cart</a>
+            <a href="./dashboard.php">Daily Report</a>
             <br>
             <div class="logo">
                 <img src="./dashboardd/dashboard_custom_logo.png" alt="Logo" style="width: 100%;">

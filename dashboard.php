@@ -14,7 +14,7 @@ $users_query = "SELECT username, email, role, created_at FROM users";
 $users_result = $conn->query($users_query);
 
 // Fetch Books
-$books_query = "SELECT title, author, price, discount, discounted_price FROM books";
+$books_query = "SELECT title, author, isbn, price, discount, discounted_price, added_by FROM books";
 $books_result = $conn->query($books_query);
 
 // Fetch Subscribers
@@ -51,9 +51,9 @@ $contact_result = $conn->query($contact_query);
             <br>
             <br>
             <a href="./home.php">Home</a>
-            <a href="#users">Users</a>
-            <a href="">Books</a>
-            <a href="#subscribers">Subscribers</a>
+            <a href="./profile.php">Profile</a>
+            <a href="./cart.php">Cart</a>
+            <a href="./dashboard.php">Daily Report</a>
             <br>
             <div class="logo">
                 <img src="./dashboardd/dashboard_custom_logo.png" alt="Logo" style="width: 100%;">
@@ -113,9 +113,11 @@ $contact_result = $conn->query($contact_query);
                     <tr>
                         <th>Title</th>
                         <th>Author</th>
+                        <th>ISBN</th>
                         <th>Price</th>
                         <th>Discount</th>
                         <th>Discounted Price</th>
+                        <th>Added by</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,9 +125,11 @@ $contact_result = $conn->query($contact_query);
                     <tr>
                         <td><?= $book['title'] ?></td>
                         <td><?= $book['author'] ?></td>
+                        <td><?= $book['isbn'] ?></td>
                         <td><?= $book['price'] ?></td>
                         <td><?= $book['discount'] ?>%</td>
                         <td><?= $book['discounted_price'] ?></td>
+                        <td><?= $book['added_by'] ?></td>
                         <td><a href="edit_book.php?id=<?= $book['title']; ?>" style=" text-decoration: none; color: green;">Edit</a></td>
                     </tr>
                     <?php endwhile; ?>

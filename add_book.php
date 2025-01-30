@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = 'localhost';
 $username = 'root';
 $password = '';
@@ -25,12 +27,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $discounted_price = $discount > 0 ? $price - ($price * $discount / 100) : $price;
 
+    if (!isset($_SESSION['username'])) {
+      echo "You must be logged in to add a book.";
+      exit();
+  }
+    $added_by = $_SESSION['username']; 
+
+
     $image = $_FILES['image'];
     $image_path = 'books/' . basename($image['name']);
     if (move_uploaded_file($image['tmp_name'], $image_path)) {
       
-        $sql = "INSERT INTO books (title, author, summary, isbn, genre, price, discount, discounted_price, image_path) 
-                VALUES ('$title', '$author', '$summary', '$isbn', '$genre', '$price', '$discount', '$discounted_price', '$image_path')";
+        $sql = "INSERT INTO books (title, author, summary, isbn, genre, price, discount, discounted_price, image_path, added_by) 
+                VALUES ('$title', '$author', '$summary', '$isbn', '$genre', '$price', '$discount', '$discounted_price', '$image_path', '$added_by')";
 
         if ($conn->query($sql) === TRUE) {
         echo "<p style='

@@ -14,10 +14,12 @@ if (isset($_GET['id'])) {
 if (isset($_POST['update'])) {
     $title = $_POST['title'];
     $author = $_POST['author'];
+    $isbn = $_POST['isbn'];
     $price = $_POST['price'];
     $discount = $_POST['discount'];
     $discounted_price = $_POST['discounted_price'];
     $image_path = $book['image_path'];
+    $added_by = $_POST['added_by'];
 
     if ($discount > 0) {
         $discounted_price = $price - ($price * ($discount / 100));
@@ -42,7 +44,7 @@ if (isset($_POST['update'])) {
     }
 
     // Update the database with the correct image path
-    $updateQuery = "UPDATE books SET title='$title', author='$author', price='$price', discount='$discount', discounted_price='$discounted_price', image_path ='$image_path' WHERE title='$id'";
+    $updateQuery = "UPDATE books SET title='$title', author='$author', isbn='$isbn', price='$price', discount='$discount', discounted_price='$discounted_price', added_by='$added_by',  image_path ='$image_path'  WHERE title='$id'";
     if (mysqli_query($conn, $updateQuery)) {
         echo "Book updated successfully!";
         header("Location: dashboard.php"); 
@@ -75,9 +77,9 @@ if (isset($_POST['update'])) {
             <br>
             <br>
             <a href="./home.php">Home</a>
-            <a href="#users">Users</a>
-            <a href="#books">Books</a>
-            <a href="#subscribers">Subscribers</a>
+            <a href="./profile.php">Profile</a>
+            <a href="./cart.php">Cart</a>
+            <a href="./dashboard.php">Daily Report</a>
             <br>
             <div class="logo">
                 <img src="./dashboardd/dashboard_custom_logo.png" alt="Logo" style="width: 100%;">
@@ -95,6 +97,9 @@ if (isset($_POST['update'])) {
             <label>Author:</label>
             <input type="text" name="author" value="<?= $book['author']; ?>" required>
             
+            <label>ISBN:</label>
+            <input type="text" name="isbn" value="<?= $book['isbn']; ?>" required>
+
             <label>Price:</label>
             <input type="text" name="price" value="<?= $book['price']; ?>" required>
             
@@ -103,7 +108,11 @@ if (isset($_POST['update'])) {
             
             <label>Discounted Price:</label>
             <input type="text" name="discounted_price" value="<?= $book['discounted_price']; ?>" required>
-            
+           
+            <label>Added By:</label>
+            <input type="text" name="added_by" value="<?= $book['added_by']; ?>" readonly>
+
+
            <!-- Display Current Image -->
     <div class="image-preview">
         <p>Current Image:</p>
