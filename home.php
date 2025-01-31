@@ -1,7 +1,6 @@
 <?php 
 session_start();
 
-
 // Connection with the database
 include 'db.php';
 
@@ -13,34 +12,61 @@ $result = $conn->query($sql);
 $query1 = "SELECT * FROM ads_slider";
 $result1 = mysqli_query($conn, $query1);
 
-// Fetch only 2 ads
+// Fetch ads
 $query2 = "SELECT title, image_url FROM ads LIMIT 3"; 
 $result2 = $conn->query($query2);
 
+// Fetch ads for specific sections
+$query_section1 = "SELECT image_url FROM ads WHERE placement = 'section1' LIMIT 1";
+$result_section1 = $conn->query($query_section1);
+
+$query_section2 = "SELECT image_url FROM ads WHERE placement = 'section2' LIMIT 1";
+$result_section2 = $conn->query($query_section2);
+
+$query_section3 = "SELECT image_url FROM ads WHERE placement = 'section3' LIMIT 1";
+$result_section3 = $conn->query($query_section3);
 
 // Handle adding books to the cart
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
+    if (!isset($_SESSION['user_id'])) {
+        echo "You need to log in to add books to the cart!";
+        exit;
+    }
+
     $user_id = $_SESSION['user_id']; 
     $book_id = $_POST['book_id'];
+    
     // Check if the book is already in the user's cart
     $stmt = $conn->prepare("SELECT * FROM cart WHERE user_id = ? AND book_id = ?");
     $stmt->bind_param("ii", $user_id, $book_id);
     $stmt->execute();
     $result = $stmt->get_result();
+    
     if ($result->num_rows > 0) {
         // Book is already in the cart, update the quantity
         $stmt = $conn->prepare("UPDATE cart SET quantity = quantity + 1 WHERE user_id = ? AND book_id = ?");
         $stmt->bind_param("ii", $user_id, $book_id);
         $stmt->execute();
+        echo "<p style='
+        font-family: Arial, sans-serif; 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+        text-align: center; 
+        margin: 20px auto; 
+        max-width: 400px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>
+        Book already added to Cart! 
+        <a href='cart.php' style='color: #ffffff; text-decoration: underline;'>View Cart</a>
+      </p>";
+    
     } else {
         // Book is not in the cart, insert a new row
         $stmt = $conn->prepare("INSERT INTO cart (user_id, book_id) VALUES (?, ?)");
         $stmt->bind_param("ii", $user_id, $book_id);
         $stmt->execute();
-    }
-    $stmt->close();
-
-    echo "<p style='
+        echo "<p style='
         font-family: Arial, sans-serif; 
         background-color: #4CAF50; 
         color: white; 
@@ -53,9 +79,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Book added to Cart! 
         <a href='cart.php' style='color: #ffffff; text-decoration: underline;'>View Cart</a>
       </p>";
+        }
+    $stmt->close();
+}
 
-} 
+// Handle Bookmark action
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bookmark'])) {
+    if (!isset($_SESSION['user_id'])) {
+        echo "You need to log in to manage bookmarks!";
+        exit;
+    }
+
+    $user_id = $_SESSION['user_id'];
+    $book_id = $_POST['book_id'];
+
+    // Check if the book is already bookmarked
+    $stmt = $conn->prepare("SELECT * FROM bookmarks WHERE user_id = ? AND book_id = ?");
+    $stmt->bind_param("ii", $user_id, $book_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        // Insert the bookmark
+        $stmt = $conn->prepare("INSERT INTO bookmarks (user_id, book_id) VALUES (?, ?)");
+        $stmt->bind_param("ii", $user_id, $book_id);
+        $stmt->execute();
+        echo "<p style='
+        font-family: Arial, sans-serif; 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+        text-align: center; 
+        margin: 20px auto; 
+        max-width: 400px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>
+        Book bookmarked successfully! 
+        <a href='bookmark.php' style='color: #ffffff; text-decoration: underline;'>View Bookmarks</a>
+      </p>";
+        } else {
+        echo "You already bookmarked this book!";
+    }
+    $stmt->close();
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -91,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
       <ul> 
-        <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
+        <li><a href="./bookmark.php"><i class="fa fa-bookmark"></i></a></li>
         <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
         <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
@@ -140,10 +208,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
+   <!-- First Ad Section -->
     <div class="ads-section">
-      <img src="./Posters/poster-poster.jpg" alt="4">
+        <?php if ($row = $result_section1->fetch_assoc()): ?>
+            <img src="./Posters/<?php echo $row['image_url']; ?>" alt="Ad 1">
+        <?php endif; ?>
     </div>
-
 
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
     <div class="plus-container">
@@ -185,11 +255,17 @@ if ($result && $result->num_rows > 0): ?>
             <!-- Add to cart Button -->
             <form method="POST" action="" class="add_to_cart">
                         <input type="hidden" name="book_id" value="<?= $row['id'] ?>">
-                        <button type="submit" class="add-to-cart" >Add to Cart</button>
+                        <button type="submit" name="add_to_cart" class="add-to-cart" >Add to Cart</button>
                     </form>
 
+            <!-- Bookmark Button -->
+            <form action="" method="POST" class="bookmark-form">
+                <input type="hidden" name="book_id" value="<?= $row['id']; ?>"> 
+                <button type="submit" name="bookmark" class="favorite">
+                    <i class="fa fa-bookmark"></i> 
+                </button>
+            </form>
 
-            <button class="favorite"><i class="fa fa-bookmark"></i></button>
             
             <!-- Delete Button -->
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
@@ -206,9 +282,12 @@ if ($result && $result->num_rows > 0): ?>
 <?php endif; ?>
 
 
-      <div class="ads-section">
-            <img src="./Posters/main-main.jpg" alt="4">
-          </div>
+     <!-- Second Ad Section -->
+    <div class="ads-section">
+        <?php if ($row = $result_section2->fetch_assoc()): ?>
+            <img src="./Posters/<?php echo $row['image_url']; ?>" alt="Ad 2">
+        <?php endif; ?>
+    </div>
 
             <!-- ADS SECTION ------------------------------------------------------------>
 
@@ -221,9 +300,12 @@ if ($result && $result->num_rows > 0): ?>
           <?php endwhile; ?>
       </div>
 
-      <div class="ads-section">
-            <img src="./Posters/poster-main.jpg" alt="4">
-          </div>
+     <!-- Third Ad Section -->
+<div class="ads-section">
+    <?php if ($row = $result_section3->fetch_assoc()): ?>
+        <img src="./Posters/<?php echo $row['image_url']; ?>" alt="Ad 3">
+    <?php endif; ?>
+</div>
 
 
        
@@ -232,30 +314,30 @@ if ($result && $result->num_rows > 0): ?>
 
 
         
-        
-                   <div class="line">
-                    <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>
-                      Over 5 million books ready to ship, 3.6 million eBooks and 300,000 audiobooks to download right now! Curbside pickup available in most stores!</p>
-                    <hr>
-                   </div>
 
-                   <div class="another-part">
-                    <div class="about-us-small-part">
-                      <h2>Get to Know Luminous Online</h2>
-                    </div>
-                   </div>
+    <div class="line">
+    <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>
+      Over 5 million books ready to ship, 3.6 million eBooks and 300,000 audiobooks to download right now! Curbside pickup available in most stores!</p>
+    <hr>
+    </div>
 
-                    <div class="extra-part">
-                    <div class="about-us-extra-part">
-                      <h4>Buy Books Online at Luminous.com, America’s Favorite Bookstore</h4>
-                      <p>No matter what you’re a fan of, from <a href="#">Fiction</a> to<a href="#"> Biography</a>, <a href="">Sci-Fi</a>, <a href="">Mystery</a>, <a href="">YA</a>, <a href="">Manga</a>, and more, 
-                        LUMINOUS has the perfect book for you. Shop bestselling books from the <a href="#">NY Times Bestsellers list</a>, 
-                        or get personalized recommendations to find something new and unique! Discover <a href="">kids books</a> for children of all ages 
-                        including classics like <a href="#">Dr. Seuss</a> to modern favorites like the <a href="#">Dog Man series</a>.</p>
-                        <button><a href="./about-us.php">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
-                        </button>
-                      </div>
-                    </div>
+    <div class="another-part">
+    <div class="about-us-small-part">
+      <h2>Get to Know Luminous Online</h2>
+    </div>
+    </div>
+
+    <div class="extra-part">
+    <div class="about-us-extra-part">
+      <h4>Buy Books Online at Luminous.com, America’s Favorite Bookstore</h4>
+      <p>No matter what you’re a fan of, from <a href="#">Fiction</a> to<a href="#"> Biography</a>, <a href="">Sci-Fi</a>, <a href="">Mystery</a>, <a href="">YA</a>, <a href="">Manga</a>, and more, 
+        LUMINOUS has the perfect book for you. Shop bestselling books from the <a href="#">NY Times Bestsellers list</a>, 
+        or get personalized recommendations to find something new and unique! Discover <a href="">kids books</a> for children of all ages 
+        including classics like <a href="#">Dr. Seuss</a> to modern favorites like the <a href="#">Dog Man series</a>.</p>
+        <button><a href="./about-us.php">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
+        </button>
+      </div>
+    </div>
 
 
   <div class="community">
@@ -336,7 +418,7 @@ if ($result && $result->num_rows > 0): ?>
               You can view Luminous's <a href="#">Privacy Policy</a> here. <br>Unsubscribe from our emails at any time.</p> <br>
               <h5>Rewards</h5>
               <p>Enroll in Rewards for <b>FREE</b>. Watch your savings add up!</p>
-              <p><a href="#">Learn More</a>   <a href="#">Sign Up Free</a></p>
+              <p><a href="#">Learn More</a>   <a href="./register.php">Sign Up Free</a></p>
           </div>
         </div>
         <hr>

@@ -81,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <i class="fas fa-search"></i>
   </div>
   <ul> 
-    <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
-    <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
+  <li><a href="./bookmark.php"><i class="fa fa-bookmark"></i></a></li>
+  <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
     <?php if (isset($_SESSION['user_id'])): ?>
         <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
               <?php else: ?>

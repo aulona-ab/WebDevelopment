@@ -1,61 +1,66 @@
 <?php
 session_start();
+include 'db.php';
 
+$sql = "SELECT * FROM books";
+$result = $conn->query($sql);
+
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    echo "<script>
-            alert('You need to log in to view your cart.');
-            window.location.href = 'login.php';
-          </script>";
-    exit();
+    echo "You need to log in to manage bookmarks!";
+    exit;
 }
 
 $user_id = $_SESSION['user_id'];
 
-// Database connection
-$conn = new mysqli('localhost', 'root', '', 'bookstore');
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch the cart items for the logged-in user
-$stmt = $conn->prepare("
-    SELECT cart.id, books.title, books.discount, books.price, books.discounted_price, books.image_path, cart.quantity 
-    FROM cart 
-    JOIN books ON cart.book_id = books.id 
-    WHERE cart.user_id = ?
-");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$total_price = 0;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-    $cart_id = $_POST['cart_id'];
-    $action = $_POST['action'];
-
-    if ($action === 'decrease') {
-        // Decrease the quantity
-        $stmt = $conn->prepare("UPDATE cart SET quantity = quantity - 1 WHERE id = ? AND quantity > 1");
-        $stmt->bind_param("i", $cart_id);
+// Handle adding books to the cart
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = $_SESSION['user_id']; 
+    $book_id = $_POST['book_id'];
+    // Check if the book is already in the user's cart
+    $stmt = $conn->prepare("SELECT * FROM cart WHERE user_id = ? AND book_id = ?");
+    $stmt->bind_param("ii", $user_id, $book_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        // Book is already in the cart, update the quantity
+        $stmt = $conn->prepare("UPDATE cart SET quantity = quantity + 1 WHERE user_id = ? AND book_id = ?");
+        $stmt->bind_param("ii", $user_id, $book_id);
         $stmt->execute();
-    } elseif ($action === 'increase') {
-        // Increase the quantity
-        $stmt = $conn->prepare("UPDATE cart SET quantity = quantity + 1 WHERE id = ?");
-        $stmt->bind_param("i", $cart_id);
-        $stmt->execute();
-    } elseif ($action === 'remove') {
-        // Remove the book from the cart
-        $stmt = $conn->prepare("DELETE FROM cart WHERE id = ?");
-        $stmt->bind_param("i", $cart_id);
+    } else {
+        // Book is not in the cart, insert a new row
+        $stmt = $conn->prepare("INSERT INTO cart (user_id, book_id) VALUES (?, ?)");
+        $stmt->bind_param("ii", $user_id, $book_id);
         $stmt->execute();
     }
+    $stmt->close();
 
-    header("Location: cart.php"); 
-    exit();
-}
+    echo "<p style='
+        font-family: Arial, sans-serif; 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px; 
+        border-radius: 5px; 
+        text-align: center; 
+        margin: 20px auto; 
+        max-width: 400px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);'>
+        Book added to Cart! 
+        <a href='cart.php' style='color: #ffffff; text-decoration: underline;'>View Cart</a>
+      </p>";
 
+} 
+
+// Fetch bookmarked books for the logged-in user
+$sql = "SELECT b.id, b.title, b.author, b.genre, b.price, b.discounted_price, b.discount, b.image_path 
+        FROM books b
+        INNER JOIN bookmarks bm ON b.id = bm.book_id
+        WHERE bm.user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -63,16 +68,91 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart</title>
+    <title>Your Bookmarks</title>
     <link rel="stylesheet" href="page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-      body{
-      background-image: url(./wallpaper/lule.jpg);
-      background-size: contain;
+        body {
+            background-image: url(./wallpaper/lule.jpg);
+            background-size: contain;
+        }
 
-      }
-      </style>
+        .product-container {
+            background-color: rgba(192, 192, 192, 0.212);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 1px 125px 40px;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 1px 10px;
+            }
+        }
+
+        .product-card {
+            background-color: rgba(243, 238, 238, 0.93);
+            position: relative;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 6px 0;
+            max-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .author-name {
+            font-size: 12px;
+            margin-top: -6px;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            padding: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .original-price {
+            font-size: 12px;
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        .favorite {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ff4d4d;
+        }
+
+        .favorite:hover {
+            color: #e60000;
+        }
+
+        
+    </style>
 
 
 </head>
@@ -108,97 +188,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
      
 
     </header>
-
-    <div class="genre-container">
-    <nav class="genre-bar">
-        <ul>
-          <li><a href="#romance">Gift Cards</a></li>
-          <li><a href="#romance">Best Sellers</a></li>
-          <li><a href="#romance">New Arrivals</a></li>
-          <li><a href="#romance">Top Picks</a></li>
-          <li><a href="#romance">Free Shipping</a></li>
-          <li><a href="#non-fiction">Author Events</a></li>
-          <li><a href="#romance">YA</a></li>
-          <li><a href="#mystery">Audiobooks</a></li>
-          <li><a href="#fantasy">eBooks</a></li>
-          <li><a href="#sci-fi">Fiction</a></li>
-          <li><a href="#non-fiction">Non-Fiction</a></li>
-          <li><a href="#non-fiction">Kids</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <br>
-    <br>
     
-    <h1 style="text-align: center; font-size: 27px; color: #333;">Your Cart</h1>
-    <div class="cart-container">
-        <?php if ($result->num_rows > 0): ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Discounted Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-    <?php while ($row = $result->fetch_assoc()): ?>
-        <?php
-        // Get the original price (for display) and the discounted price (for subtotal)
-        $original_price = $row['price'];
-        $discounted_price = $row['discounted_price'] ? $row['discounted_price'] : $original_price;
-        $subtotal = $discounted_price * $row['quantity'];
-        $total_price += $subtotal;
-        ?>
-        <tr class="cart-item">
-            <td class="cart-item-image">
-                <img src="<?= htmlspecialchars($row['image_path']) ?>" alt="Book Image" class="book-image">
-            </td>
-            <td class="cart-item-title"><?= htmlspecialchars($row['title']) ?></td>
-            <td class="cart-item-price">€<?= number_format($original_price, 2) ?></td> <!-- Display original price -->
-            <td class="cart-item-quantity">
-                <div class="quantity-btns">
-                    <form method="POST" action="cart.php" class="quantity-form">
-                        <input type="hidden" name="cart_id" value="<?= $row['id'] ?>">
-                        <input type="hidden" name="action" value="decrease">
-                        <button type="submit" name="update" value="decrease" class="quantity-decrease-btn">-</button>
-                    </form>
-                    <span class="quantity-value"><?= $row['quantity'] ?></span>
-                    <form method="POST" action="cart.php" class="quantity-form">
-                        <input type="hidden" name="cart_id" value="<?= $row['id'] ?>">
-                        <input type="hidden" name="action" value="increase">
-                        <button type="submit" name="update" value="increase" class="quantity-increase-btn">+</button>
-                    </form>
-                </div>
-            </td>
-            <td class="cart-item-subtotal">€<?= number_format($subtotal, 2) ?></td> <!-- Subtotal is calculated using discounted price -->
-            <td class="cart-item-remove">
-                <form method="POST" action="cart.php" class="remove-form">
-                    <input type="hidden" name="cart_id" value="<?= $row['id'] ?>">
-                    <input type="hidden" name="action" value="remove">
-                    <button type="submit" name="update" value="remove" class="remove-btn">Remove</button>
+  <div class="head">
+  <h1>Your Bookmarked Books</h1>
+  </div>
+
+  <div class="product-container">
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <div class="product-card">
+                <?php if ($row['discount'] > 0): ?>
+                    <div class="product-discount">-<?= $row['discount']; ?>%</div>
+                <?php endif; ?>
+
+                <!-- Book cover  -->
+                <a href="book_details.php?book_id=<?= $row['id']; ?>">
+                    <img src="<?= $row['image_path']; ?>?v=<?= time(); ?>" alt="Book Cover" class="product-image" />
+                    <h3 class="product-title"><?= $row['title']; ?></h3>
+                </a>
+                <p class="author-name"><?= $row['author']; ?></p>
+
+                <!-- Discount -->
+                <p class="product-price">
+                    <?= number_format($row['discounted_price'], 2); ?> €
+                    <?php if ($row['discount'] > 0): ?>
+                        <span class="original-price"><?= number_format($row['price'], 2); ?> €</span>
+                    <?php endif; ?>
+                </p>
+
+                <!-- Add to cart Button -->
+                <form method="POST" action="" class="add_to_cart">
+                    <input type="hidden" name="book_id" value="<?= $row['id'] ?>">
+                    <button type="submit" name="add_to_cart" class="add-to-cart">Add to Cart</button>
                 </form>
-            </td>
-        </tr>
-    <?php endwhile; ?>
-</tbody>
-            </table>
-            <div class="total-section">
-                <h2>Total Price: €<?= number_format($total_price, 2) ?></h2>
-                <button onclick="alert('Purchase functionality not implemented yet!')">Proceed to Purchase</button>
-            </div>
-        <?php else: ?>
-            <p>Your cart is empty.</p>
-        <?php endif; ?>
-    </div>
-    
 
-    <br>
-    <br>
+
+                <!-- Remove bookmark -->
+                <form action="remove_bookmark.php" method="POST" class="delete-form">
+                        <input type="hidden" name="book_id" value="<?= $row['id']; ?>">
+                        <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to remove this book from your bookmarks?')">
+                            Remove 
+                        </button>
+                    </form>
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No bookmarked books found.</p>
+    <?php endif; ?>
+</div>
+    
 
     <div class="line">
         <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>

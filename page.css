@@ -1146,7 +1146,7 @@ form br {
 
 
 
-/* author-collection section*/
+/* author-collection section----------------------------------------------------------*/
 
 .books {
   display: flex;
@@ -1321,7 +1321,7 @@ form br {
   }
 }
 
-/* icon section*/
+/* icon section---------------------------------------------------------------------------------------*/
 
 .icon-container {
   background-color: rgba(192, 192, 192, 0.212);
@@ -1346,7 +1346,7 @@ form br {
 
 }
 
-/* community section*/
+/* community section -------------------------------------------------------------------------*/
 
 .community {
   background-image: url(https://st3.depositphotos.com/25371908/32587/i/450/depositphotos_325873958-stock-photo-public-library-book-store-blurred.jpg);
@@ -1404,7 +1404,7 @@ form br {
   background-color: transparent;
 }
 
-/* Footer section */
+/* FOOTER SECTION -------------------------------------------------------------------------*/
 footer {
   background-color: white;
   padding: 50px;
@@ -1622,7 +1622,7 @@ p.subtitle {
 
 .profile-container {
   display: flex;
-  margin: 100px;
+  margin: 70px;
   gap: 20px;
 }
 
@@ -1779,3 +1779,49 @@ p.subtitle {
   width: 100%;
   border-radius: 10px;
 }
+
+/*BOOKMARK BUTTON ----------------------------------*/
+
+.bookmark-form {
+  all: unset;
+  display: inline;
+}
+
+.bookmark-form * {
+  all: unset;
+}
+
+.bookmark-form .favorite {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #999; 
+  transition: color 0.3s ease-in-out;
+}
+
+.bookmark-form .favorite:hover {
+  color: #ffcc00; 
+}
+
+.bookmark-form .favorite.bookmarked {
+  color: #ffcc00; 
+}
+
+.head {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 2px solid #d1b293; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.head h1 {
+  font-family: 'Georgia', serif; 
+  font-size: 25px;
+  color: #4a3c31; 
+  letter-spacing: 1px;
+  text-transform: uppercase; 
+  margin: 0;
+}
+
+

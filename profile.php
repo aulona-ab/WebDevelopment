@@ -42,6 +42,13 @@ $conn->close();
     <title>Profile </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="page.css">
+    <style>
+
+      body{
+       background-image: url(./wallpaper/lule.jpg);
+       background-size: contain;
+      }
+    </style>
 </head>
 <body>
 
@@ -65,7 +72,7 @@ $conn->close();
       <i class="fas fa-search"></i>
   </div>
   <ul> 
-    <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
+    <li><a href="./bookmark.php"><i class="fa fa-bookmark"></i></a></li>
     <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
     <?php if (isset($_SESSION['user_id'])): ?>
         <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
@@ -110,56 +117,27 @@ $conn->close();
                     <a href="#">Profile Settings</a>
                     <ul class="sub-settings">
                         <li><a href="#">Edit Profile</a></li>
-                        <li><a href="#">Change Profile Picture</a></li>
-                        <li><a href="#">Update Contact Info</a></li>
                     </ul>
                 </li>
                         <li>
                     <a href="#">Account Settings</a>
                     <ul class="sub-settings">
                         <li><a href="#">Change Password</a></li>
-                        <li><a href="#">Manage Payment Methods</a></li>
-                        <li><a href="#">Linked Accounts</a></li>
                     </ul>
                 </li>
-        
-                <li>
-                    <a href="#">Privacy Settings</a>
-                    <ul class="sub-settings">
-                        <li><a href="#">Visibility Settings</a></li>
-                        <li><a href="#">Two-Factor Authentication</a></li>
-                    </ul>
-                </li>
-        
-                <li>
-                    <a href="#">Notification Preferences</a>
-                    <ul class="sub-settings">
-                        <li><a href="#">Email Notifications</a></li>
-                        <li><a href="#">SMS Alerts</a></li>
-                        <li><a href="#">Push Notifications</a></li>
-                    </ul>
-                </li>
-        
-                <li>
-                    <a href="#">General Settings</a>
-                    <ul class="sub-settings">
-                        <li><a href="#">Language</a></li>
-                        <li><a href="#">Region Settings</a></li>
-                    </ul>
-                </li>
-        
-                <li><a href="./contact.html">Help & Support</a></li>
+                <li><a href="./contact.php">Help & Support</a></li>
         
                 <li><a href="./log_out.php">Log Out</a></li>
                 <li><a href="./delete_account.php" onclick="return confirm('Are you sure you want to delete this account? This action cannot be undone.');">Delete Account</a></li>
                 </aside>
+
+
         <section class="profile-details">
             <div class="profile-header">
                 <img src="./Logo/blank-profile-picture-973460_1280.webp" alt="Profile Picture" class="profile-pic">
                 <div class="info">
                     <h2><?php echo htmlspecialchars($_SESSION['username']); ?></h2>
                     <p>Member Since: <?php echo date("F j, Y", strtotime($created_at)); ?></p>
-                    <button class="edit-profile">Edit Profile</button>
                 </div>
             </div>
 
@@ -178,68 +156,15 @@ $conn->close();
                 <p>Books Reviewed: <strong>7</strong></p>
                 <p>Favorite Genre: <strong>Fiction</strong></p>
             </section>
-            <section class="favorites">
-                <h2>Bookmarks</h2>
-                <div class="book-list">
-                    <div class="book-item">
-                        <img src="./books/15.jpg" alt="Book Cover">
-                        <p>The Great Gatsby</p>
-                    </div>
-                    <div class="book-item">
-                        <img src="./books/books/17.jpg" alt="Book Cover">
-                        <p>1984</p>
-                    </div>
-                    <div class="book-item">
-                        <img src="./books/books/19.jpg" alt="Book Cover">
-                        <p>Pride and Prejudice</p>
-                    </div>
-                    <div class="book-item">
-                        <img src="./books/16.jpg" alt="Book Cover">
-                        <p>Pride and Prejudice</p>
-                    </div>
-                    <div class="book-item">
-                        <img src="./books/books/18.jpg" alt="Book Cover">
-                        <p>Pride and Prejudice</p>
-                    </div>
-                </div>
-            </section>
         </section>
     </main>
 
-    <div class="line">
-        <p><b>FIND YOUR PLACE AT LUMINOUS ONLINE BOOKSTORE</b>
-          Over 5 million books ready to ship, 3.6 million eBooks and 300,000 audiobooks to download right now! Curbside pickup available in most stores!</p>
-        <hr>
-       </div>
-
-       <div class="another-part">
-        <div class="about-us-small-part">
-          <h2>Get to Know Luminous Online</h2>
-        </div>
-       </div>
-
-        <div class="extra-part">
-        <div class="about-us-extra-part">
-          <h4>Buy Books Online at Luminous.com, America’s Favorite Bookstore</h4>
-          <p>No matter what you’re a fan of, from <a href="#">Fiction</a> to<a href="#"> Biography</a>, <a href="">Sci-Fi</a>, <a href="">Mystery</a>, <a href="">YA</a>, <a href="">Manga</a>, and more, 
-            LUMINOUS has the perfect book for you. Shop bestselling books from the <a href="#">NY Times Bestsellers list</a>, 
-            or get personalized recommendations to find something new and unique! Discover <a href="">kids books</a> for children of all ages 
-            including classics like <a href="#">Dr. Seuss</a> to modern favorites like the <a href="#">Dog Man series</a>.</p>
-            <button><a href="#">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
-            </button>
-          </div>
-        </div>
 
 
-
- 
-        <div class="community">
-    <h1 class="sentence1"> Join Our Book Lover Community</h1>
-    <p class="sentence">Stay updated with the latest releases, exclusive offers, and book recommendations tailored for you!</p>
-    <div class="buttons">
-        <button class="learn-more">Learn More</button>
+    <div class="ads-section">
+      <img src="./Posters/poster-poster.jpg" alt="4">
     </div>
-</div>
+
 
 
       <footer>
