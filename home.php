@@ -252,7 +252,7 @@ if ($result && $result->num_rows > 0): ?>
                         LUMINOUS has the perfect book for you. Shop bestselling books from the <a href="#">NY Times Bestsellers list</a>, 
                         or get personalized recommendations to find something new and unique! Discover <a href="">kids books</a> for children of all ages 
                         including classics like <a href="#">Dr. Seuss</a> to modern favorites like the <a href="#">Dog Man series</a>.</p>
-                        <button><a href="#">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
+                        <button><a href="./about-us.php">Read More</a> <span style="display: inline-block; transform: rotate(90deg); font-size: 18px; padding: 0 0 5px;">›</span>
                         </button>
                       </div>
                     </div>

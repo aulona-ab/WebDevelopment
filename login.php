@@ -27,18 +27,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $username;  
 
             if ($role == 'admin') {
-                echo "Admin login successful!<br>";
+                echo "<div style='position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; display: flex; justify-content: center; align-items: center;'>
+                        <video width='100%' height='100%' autoplay style='object-fit: cover;'>
+                            <source src='./LoadingVIDEO/loading2.mp4' type='video/mp4'>
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>";
                 echo "<script>
                         setTimeout(function() {
                             window.location.href = 'dashboard.php'; // Redirect to admin dashboard
-                        }, 1000);  
+                        }, 3000);  
                     </script>";
             } else {
-                echo "Login successful!<br>";
+                echo "<div style='position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; display: flex; justify-content: center; align-items: center;'>
+                        <video width='100%' height='100%' autoplay style='object-fit: cover;'>
+                            <source src='./LoadingVIDEO/loading.mp4' type='video/mp4'>
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>";
                 echo "<script>
                         setTimeout(function() {
                             window.location.href = 'home.php';
-                        }, 1000);  
+                        }, 3000);  
                     </script>";
             }
             exit; 
