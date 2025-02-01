@@ -189,8 +189,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
             </table>
             <div class="total-section">
                 <h2>Total Price: €<?= number_format($total_price, 2) ?></h2>
-                <button onclick="alert('Purchase functionality not implemented yet!')">Proceed to Purchase</button>
-            </div>
+                <form action="purchase.php" method="POST">
+    <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
+    <input type="submit" value="Proceed to Purchase">
+</form>            </div>
         <?php else: ?>
             <p>Your cart is empty.</p>
         <?php endif; ?>

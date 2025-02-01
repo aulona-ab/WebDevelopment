@@ -23,6 +23,9 @@ if (isset($_GET['book_id'])) {
     exit;
 }
 
+$discounted_price = $book['discounted_price'] > 0 ? $book['discounted_price'] : $book['price']; // If discounted_price is 0, use the original price
+
+
 // Handle adding books to the cart
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id']; 
@@ -67,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart</title>
+    <title><?= $book['title']; ?></title>
     <link rel="stylesheet" href="page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -95,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <i class="fas fa-search"></i>
       </div>
       <ul> 
-        <li><a href="./profile.php"><i class="fa fa-bookmark"></i></a></li>
+        <li><a href="./bookmark.php"><i class="fa fa-bookmark"></i></a></li>
         <li><a href="./cart.php"><i class="fas fa-shopping-cart"></i></a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
         <li><a href="./profile.php"><i class="fas fa-user"></i></a></li>
@@ -157,10 +160,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
                     <button type="submit" class="details-add-to-cart">Add to Cart</button>
                 </form>
-                <form method="POST" action="purchase.php" class="purchase-book">
-                    <input type="hidden" name="book_id" value="<?= $book['id']; ?>">
-                    <button type="submit" class="purchase-button">Purchase</button>
-                </form>
+                <form action="purchase.php" method="POST">
+            <!-- Send the book details to purchase.php -->
+            <input type="hidden" name="total_price" value="<?php echo number_format($discounted_price, 2); ?>">
+            <input type="hidden" name="original_price" value="<?php echo number_format($book['price'], 2); ?>">
+            <input type="submit" value="Purchase">
+        </form>
             </div>
 
         </div>
